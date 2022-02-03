@@ -282,13 +282,13 @@
 </template>
 <script>
 import {
-  required,
-  email,
-  minLength,
-  maxLength,
+  required, email, minLength, maxLength,
 } from "vuelidate/lib/validators";
+import {Api} from "@/services/Services";
 import "vue-media-recorder/src/assets/scss/main.scss";
 import { PhotoCapture } from "vue-media-recorder";
+import AppLogger from "@/utils/AppLogger";
+
 export default {
   name: "SignupForm",
   data: function () {
@@ -376,8 +376,24 @@ export default {
       this.$v.$reset();
       this.resetData();
     },
-  },
-};
+
+    createFormData(body) {
+      Api.postFormData(body)
+        .then((response)=> {
+          if(response.data.success) {
+            console.log("Job Post Response", response);
+            this.$router.push({name: 'admin', })
+          }
+          else {
+              console.log("Error");
+          }
+        })
+      .catch((error)=> {
+        AppLogger.log(error);
+      })
+    },
+  }
+}
 </script>
 <style>
 .btn-vue {
