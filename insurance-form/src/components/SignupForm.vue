@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="camera-line">
-        <div></div>
+      <div></div>
         <div class="centre-align">
           <PhotoCapture
             v-model="imageBase64"
-            captureBtnContent="Camera"
+            captureBtnContent="Capture"
             cancelBtnContent="Retake"
             doneBtnContent="Use Image"
             @input="done"
           />
         </div>
-    <div></div>
+      <div></div>
     </div>
     <form id="signup-form" v-on:submit.prevent="submit">
       <div class="row">
