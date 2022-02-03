@@ -1,9 +1,9 @@
 <template>
-  <div id="app" class="h-100">
-    <div class="container-fluid h-100">
+  <div id="app" class="h-95">
+    <div class="h-100">
       <div class="row h-100">
-        <div class="col-md-9 h-200 d-flex justify-content-center align-items-center">
-          <div class="col-md-8 rounded px-5 py-4 shadow bg-white text-left">
+        <div class="h-300 justify-content-center align-items-center">
+          <div class="px-5 py-4 shadow bg-white text-left">
             <SignupForm />
           </div>
         </div>
