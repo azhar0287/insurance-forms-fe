@@ -21,15 +21,19 @@ export const AuthService = {
     },
   }
 
-
 export const Api = {
-    async getJobById(id) {
-      const url = Endpoints.jobs.index+'/'+id;
-      return await axios
-        .get(url)
-        .then(response => {
-          return response;
-        })
-    },  
-  }
+  async postFormData(body) {
+    const url = Endpoints.insuanceForm.formData.formData  
+    return await axios
+      .post(url, body)
+      .then(response => {
+        return response;
+      })
+      .catch(error => {
+        throw error;
+      });
+  
+  },
+
+}
 

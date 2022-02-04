@@ -1,39 +1,22 @@
 <template>
-  <div>
+  <div class="wrapper2">
     <div class="camera-line">
       <div></div>
-        <div class="centre-align">
-          <PhotoCapture
-            v-model="imageBase64"
-            captureBtnContent="Capture"
-            cancelBtnContent="Retake"
-            doneBtnContent="Use Image"
-            @input="done"
-          />
-        </div>
+      <div class="centre-align">
+        <PhotoCapture
+          v-model="form.imageBase64"
+          captureBtnContent="Capture"
+          cancelBtnContent="Retake"
+          doneBtnContent="Use Image"
+          @input="done"
+        />
+      </div>
       <div></div>
     </div>
-    <form id="signup-form" v-on:submit.prevent="submit">
-      <div class="row">
+    <form @submit.prevent="submit">
+      <div class="row form-class">
         <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Language <span class="text-danger">*</span></label
-            >
-            <select
-              v-model.trim="$v.language.$model"
-              :class="{ 'is-invalid': validationStatus($v.language) }"
-              class="form-control form-control-lg"
-            >
-              <option value="">Select Language</option>
-              <option :value="c.iso" :key="c.iso" v-for="c in countryList">
-                {{ c.country }}
-              </option>
-            </select>
-            <div v-if="!$v.country.required" class="invalid-feedback">
-              The country field is required.
-            </div>
-          </div>
+          <div class="form-group"></div>
         </div>
 
         <div class="col-md-3">
@@ -44,7 +27,6 @@
             <input
               type="text"
               v-model.trim="$v.firstName.$model"
-              :class="{ 'is-invalid': validationStatus($v.firstName) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.firstName.required" class="invalid-feedback">
@@ -61,11 +43,10 @@
             <input
               type="text"
               v-model.trim="$v.lastName.$model"
-              :class="{ 'is-invalid': validationStatus($v.lastName) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.lastName.required" class="invalid-feedback">
-              The full name field is required.
+              The Last name field is required.
             </div>
           </div>
         </div>
@@ -77,7 +58,7 @@
             >
             <input
               type="text"
-              v-model.trim="$v.middleName.$model"
+              v-model.trim="form.middleName"
               class="form-control form-control-lg"
             />
           </div>
@@ -91,7 +72,6 @@
             <input
               type="date"
               v-model.trim="$v.dob.$model"
-              :class="{ 'is-invalid': validationStatus($v.dob) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.dob.required" class="invalid-feedback">
@@ -108,7 +88,6 @@
             <input
               type="text"
               v-model.trim="$v.gender.$model"
-              :class="{ 'is-invalid': validationStatus($v.gender) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.gender.required" class="invalid-feedback">
@@ -125,7 +104,6 @@
             <input
               type="number"
               v-model.trim="$v.mobileNumber.$model"
-              :class="{ 'is-invalid': validationStatus($v.mobileNumber) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.mobileNumber.required" class="invalid-feedback">
@@ -133,14 +111,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-md-3">
-                <div class="form-group">
-                    <label class="col-form-label col-form-label-md">Mobile Number (Optional)</label>
-                    <input type="text" v-model.trim="$v.optionalMobile.$model"  class="form-control form-control-sm">   
-                </div>
-            </div> -->
-
         <div class="col-md-3">
           <div class="form-group">
             <label class="col-form-label col-form-label-md"
@@ -149,7 +119,6 @@
             <input
               type="email"
               v-model.trim="$v.email.$model"
-              :class="{ 'is-invalid': validationStatus($v.email) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.email.required" class="invalid-feedback">
@@ -160,21 +129,13 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-md-3">
-                <div class="form-group">
-                    <label class="col-form-label col-form-label-md">Email ID (Optional)</label>
-                    <input type="email" v-model.trim="$v.optionalEmail.$model" class="form-control form-control-lg">
-                </div>
-            </div>  -->
-
+<!-- 
         <div class="col-md-3">
           <div class="form-group">
             <label class="col-form-label col-form-label-md">Race</label>
             <input
               type="text"
               v-model.trim="$v.race.$model"
-              :class="{ 'is-invalid': validationStatus($v.race) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.race.required" class="invalid-feedback">
@@ -189,7 +150,6 @@
             <input
               type="text"
               v-model.trim="$v.ethnicity.$model"
-              :class="{ 'is-invalid': validationStatus($v.ethnicity) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.ethnicity.required" class="invalid-feedback">
@@ -204,7 +164,6 @@
             <input
               type="text"
               v-model.trim="$v.street.$model"
-              :class="{ 'is-invalid': validationStatus($v.street) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.street.required" class="invalid-feedback">
@@ -219,7 +178,6 @@
             <input
               type="text"
               v-model.trim="$v.zipCode.$model"
-              :class="{ 'is-invalid': validationStatus($v.zipCode) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.zipCode.required" class="invalid-feedback">
@@ -234,7 +192,6 @@
             <input
               type="text"
               v-model.trim="$v.city.$model"
-              :class="{ 'is-invalid': validationStatus($v.city) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.city.required" class="invalid-feedback">
@@ -249,7 +206,6 @@
             <input
               type="text"
               v-model.trim="$v.state.$model"
-              :class="{ 'is-invalid': validationStatus($v.state) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.state.required" class="invalid-feedback">
@@ -264,16 +220,15 @@
             <input
               type="number"
               v-model.trim="$v.passport.$model"
-              :class="{ 'is-invalid': validationStatus($v.passport) }"
               class="form-control form-control-lg"
             />
             <div v-if="!$v.passport.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-12 form-group text-center">
+        <div class="col-lg-12 form-group text-center">
           <button class="btn-success col-2">Submit Form</button>
         </div>
       </div>
@@ -282,9 +237,12 @@
 </template>
 <script>
 import {
-  required, email, minLength, maxLength,
+  required,
+  email,
+  minLength,
+  maxLength,
 } from "vuelidate/lib/validators";
-import {Api} from "@/services/Services";
+import { Api } from "@/services/Services";
 import "vue-media-recorder/src/assets/scss/main.scss";
 import { PhotoCapture } from "vue-media-recorder";
 import AppLogger from "@/utils/AppLogger";
@@ -324,7 +282,6 @@ export default {
   validations: {
     firstName: { required },
     lastName: { required },
-    middleName: { required },
     email: { required, email },
     mobileNumber: { required },
     state: { required },
@@ -341,17 +298,7 @@ export default {
     password: { required, minLength: minLength(6), maxLength: maxLength(18) },
   },
 
-  mounted: function () {
-    var v = this;
-    v.$http
-      .get(`http://localhost:4600/countries`)
-      .then(function (resp) {
-        v.countryList = resp.data;
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-  },
+  mounted: function () {},
 
   methods: {
     resetData: function () {
@@ -366,12 +313,15 @@ export default {
     },
 
     done(picture) {
-      console.log(picture);
+      this.form.imageBase64 = picture;
     },
 
     submit() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
+      console.log("Form ", this.form);
+      this.createFormData(this.form);
+
       alert("Data Submit");
       this.$v.$reset();
       this.resetData();
@@ -379,21 +329,20 @@ export default {
 
     createFormData(body) {
       Api.postFormData(body)
-        .then((response)=> {
-          if(response.data.success) {
-            console.log("Job Post Response", response);
-            this.$router.push({name: 'admin', })
-          }
-          else {
-              console.log("Error");
+        .then((response) => {
+          if (response.data.success) {
+            // console.log("Job Post Response", response);
+            // this.$router.push({name: 'admin', })
+          } else {
+            console.log("Error");
           }
         })
-      .catch((error)=> {
-        AppLogger.log(error);
-      })
+        .catch((error) => {
+          AppLogger.log(error);
+        });
     },
-  }
-}
+  },
+};
 </script>
 <style>
 .btn-vue {
@@ -406,6 +355,20 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
 }
 .centre-align {
-   padding-left: 20%;
+  padding-left: 20%;
+}
+
+.wrapper2 {
+  background: white;
+  height: 100vh;
+  width: 100%;
+}
+
+.form-class {
+  margin: 10px 10px 10px 10px;
+}
+
+h1 {
+  color: white !important;
 }
 </style>
