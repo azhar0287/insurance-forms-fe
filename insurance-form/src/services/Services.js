@@ -23,7 +23,7 @@ export const AuthService = {
 
 export const Api = {
   async postFormData(body) {
-    const url = Endpoints.insuanceForm.formData.formData  
+    const url = Endpoints.insuanceForm.formData;  
     return await axios
       .post(url, body)
       .then(response => {

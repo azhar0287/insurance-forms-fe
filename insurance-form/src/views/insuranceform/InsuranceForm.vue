@@ -26,10 +26,11 @@
             >
             <input
               type="text"
-              v-model.trim="$v.firstName.$model"
+              v-model.trim="$v.form.firstName.$model"
+              :class="{ 'is-invalid': validationStatus($v.form.firstName)}"
               class="form-control form-control-lg"
             />
-            <div v-if="!$v.firstName.required" class="invalid-feedback">
+            <div v-if="!$v.form.firstName.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
@@ -42,10 +43,12 @@
             >
             <input
               type="text"
-              v-model.trim="$v.lastName.$model"
+              v-model.trim="$v.form.lastName.$model"
+              :class="{ 'is-invalid': validationStatus($v.form.lastName)}"
               class="form-control form-control-lg"
+
             />
-            <div v-if="!$v.lastName.required" class="invalid-feedback">
+            <div v-if="!$v.form.lastName.required" class="invalid-feedback">
               The Last name field is required.
             </div>
           </div>
@@ -71,10 +74,12 @@
             >
             <input
               type="date"
-              v-model.trim="$v.dob.$model"
+              v-model.trim="$v.form.dob.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.dob)}"
+
             />
-            <div v-if="!$v.dob.required" class="invalid-feedback">
+            <div v-if="!$v.form.dob.required" class="invalid-feedback">
               The email field is required.
             </div>
           </div>
@@ -87,10 +92,12 @@
             >
             <input
               type="text"
-              v-model.trim="$v.gender.$model"
+              v-model.trim="$v.form.gender.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.gender)}"
+
             />
-            <div v-if="!$v.gender.required" class="invalid-feedback">
+            <div v-if="!$v.form.gender.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
@@ -103,43 +110,38 @@
             >
             <input
               type="number"
-              v-model.trim="$v.mobileNumber.$model"
+              v-model.trim="$v.form.mobileNumber.$model"
+              :class="{ 'is-invalid': validationStatus($v.form.mobileNumber)}"
               class="form-control form-control-lg"
+
+
             />
-            <div v-if="!$v.mobileNumber.required" class="invalid-feedback">
-              The full name field is required.
+            <div v-if="!$v.form.mobileNumber.required" class="invalid-feedback">
+              The mobile number is required.
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Email ID 1 <span class="text-danger">*</span></label
-            >
-            <input
-              type="email"
-              v-model.trim="$v.email.$model"
-              class="form-control form-control-lg"
-            />
-            <div v-if="!$v.email.required" class="invalid-feedback">
-              The email field is required.
-            </div>
-            <div v-if="!$v.email.required" class="invalid-feedback">
-              The email is not valid.
-            </div>
+                <label class="col-form-label col-form-label-lg">Email <span class="text-danger">*</span></label>
+                <input type="email" v-model.trim="$v.form.email.$model" :class="{'is-invalid': validationStatus($v.form.email)}" class="form-control form-control-lg">
+                <div v-if="!$v.form.email.required" class="invalid-feedback">The email field is required.</div>
+                <div v-if="!$v.form.email.email" class="invalid-feedback">The email is not valid.</div>
           </div>
         </div>
-<!-- 
+<!--  -->
         <div class="col-md-3">
           <div class="form-group">
             <label class="col-form-label col-form-label-md">Race</label>
             <input
               type="text"
-              v-model.trim="$v.race.$model"
+              v-model.trim="$v.form.race.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.race)}"
+
             />
-            <div v-if="!$v.race.required" class="invalid-feedback">
-              The full name field is required.
+            <div v-if="!$v.form.race.required" class="invalid-feedback">
+              This field is required.
             </div>
           </div>
         </div>
@@ -149,11 +151,13 @@
             <label class="col-form-label col-form-label-md">Ethnicity</label>
             <input
               type="text"
-              v-model.trim="$v.ethnicity.$model"
+              v-model.trim="$v.form.ethnicity.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.ethnicity)}"
+
             />
-            <div v-if="!$v.ethnicity.required" class="invalid-feedback">
-              The full name field is required.
+            <div v-if="!$v.form.ethnicity.required" class="invalid-feedback">
+              This field is required.
             </div>
           </div>
         </div>
@@ -163,10 +167,11 @@
             <label class="col-form-label col-form-label-md">Street</label>
             <input
               type="text"
-              v-model.trim="$v.street.$model"
+              v-model.trim="$v.form.street.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.street)}"
             />
-            <div v-if="!$v.street.required" class="invalid-feedback">
+            <div v-if="!$v.form.street.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
@@ -177,10 +182,12 @@
             <label class="col-form-label col-form-label-md">Zip Code</label>
             <input
               type="text"
-              v-model.trim="$v.zipCode.$model"
+              v-model.trim="$v.form.zipCode.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.zipCode)}"
+
             />
-            <div v-if="!$v.zipCode.required" class="invalid-feedback">
+            <div v-if="!$v.form.zipCode.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
@@ -191,10 +198,11 @@
             <label class="col-form-label col-form-label-md">City</label>
             <input
               type="text"
-              v-model.trim="$v.city.$model"
+              v-model.trim="$v.form.city.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.city)}"
             />
-            <div v-if="!$v.city.required" class="invalid-feedback">
+            <div v-if="!$v.form.city.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
@@ -205,11 +213,12 @@
             <label class="col-form-label col-form-label-md">State</label>
             <input
               type="text"
-              v-model.trim="$v.state.$model"
+              v-model.trim="$v.form.state.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.state)}"
             />
-            <div v-if="!$v.state.required" class="invalid-feedback">
-              The full name field is required.
+            <div v-if="!$v.form.state.required" class="invalid-feedback">
+              This field is required.
             </div>
           </div>
         </div>
@@ -219,14 +228,15 @@
             <label class="col-form-label col-form-label-md">PASSPORT/DL</label>
             <input
               type="number"
-              v-model.trim="$v.passport.$model"
+              v-model.trim="$v.form.passport.$model"
               class="form-control form-control-lg"
+              :class="{ 'is-invalid': validationStatus($v.form.passport)}"
             />
-            <div v-if="!$v.passport.required" class="invalid-feedback">
+            <div v-if="!$v.form.passport.required" class="invalid-feedback">
               The full name field is required.
             </div>
           </div>
-        </div> -->
+        </div>
 
         <div class="col-lg-12 form-group text-center">
           <button class="btn-success col-2">Submit Form</button>
@@ -239,8 +249,8 @@
 import {
   required,
   email,
-  minLength,
-  maxLength,
+  //minLength,
+  //maxLength,
 } from "vuelidate/lib/validators";
 import { Api } from "@/services/Services";
 import "vue-media-recorder/src/assets/scss/main.scss";
@@ -268,8 +278,6 @@ export default {
         dob: "",
         language: "",
         country: "",
-        password: "",
-        countryList: [],
         street: "",
         optionalMobile: "",
         imageBase64: null,
@@ -280,22 +288,24 @@ export default {
     PhotoCapture,
   },
   validations: {
-    firstName: { required },
-    lastName: { required },
-    email: { required, email },
-    mobileNumber: { required },
-    state: { required },
-    city: { required },
-    zipCode: { required },
-    race: { required },
-    ethnicity: { required },
-    gender: { required },
-    language: { required },
-    dob: { required },
-    country: { required },
-    passport: { required },
-    street: { required },
-    password: { required, minLength: minLength(6), maxLength: maxLength(18) },
+    form:{
+      firstName: { required },
+      lastName: { required },
+      email: { required, email },
+      mobileNumber: { required },
+      state: { required },
+      city: { required },
+      zipCode: { required },
+      race: { required },
+      ethnicity: { required },
+      gender: { required },
+      // language: { required },
+      dob: { required },
+      passport: { required },
+      street: { required },
+    }
+    
+
   },
 
   mounted: function () {},
@@ -305,7 +315,6 @@ export default {
       this.fullname = "";
       this.email = "";
       this.country = "";
-      this.password = "";
     },
 
     validationStatus: function (validation) {
