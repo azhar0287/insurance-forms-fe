@@ -8,7 +8,7 @@ export default {
   },
     
   insuanceForm: {
-    formData:apiBase + '/insuranceForm',
+    formData:apiBase + '/insuranceData',
   },
   
 

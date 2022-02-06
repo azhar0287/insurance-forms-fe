@@ -331,7 +331,6 @@ export default {
       console.log("Form ", this.form);
       this.createFormData(this.form);
 
-      alert("Data Submit");
       this.$v.$reset();
       this.resetData();
     },
