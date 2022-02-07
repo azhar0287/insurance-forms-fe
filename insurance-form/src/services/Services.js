@@ -2,14 +2,9 @@ import Endpoints from "@/services/Endpoints";
 import axios from "axios";
 
 export const AuthService = {
-  async signIn(username,password) {
-    const url = Endpoints.auth.token
+  async signIn(body) {
+    const url = Endpoints.auth.login;
 
-    const body = {
-      username:username,
-      password: password,
-    };
-    
     return await axios
       .post(url, body)
       .then(response => {

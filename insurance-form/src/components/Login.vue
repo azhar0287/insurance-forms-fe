@@ -56,6 +56,10 @@ import {
   minLength,
   maxLength,
 } from "vuelidate/lib/validators";
+
+import { AuthService } from "@/services/Services";
+import AppLogger from "@/utils/AppLogger";
+
 export default {
   name: "Login",
   data: function () {
@@ -73,9 +77,7 @@ export default {
 
   methods: {
     resetData: function () {
-      this.fullname = "";
       this.email = "";
-      this.country = "";
       this.password = "";
     },
 
@@ -86,12 +88,34 @@ export default {
     submit: function () {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
-      alert("Data Submit");
-      this.$router.push("/insurance");
-      this.$v.$reset();
-      this.resetData();
+      
+      var user = {
+        email:this.email,
+        password:this.password
+      }
+      AuthService.signIn(user)
+        .then((response) => {
+          console.log("Response", response);
+          if (response.data.responseIdentifier=="Success") {
+            this.$router.push("/insurance");
+            this.$v.$reset();
+            this.resetData();
+          } else {
+            alert("Please provide correct email and password")
+            this.$v.$reset();
+            this.resetData();
+
+          }
+        })
+        .catch((error) => {
+          AppLogger.log(error);
+        });
     },
-  },
+
+    
+    },
+    
+    
 };
 </script>
 
