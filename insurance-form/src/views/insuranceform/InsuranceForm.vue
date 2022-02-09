@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper2">
-    <div class="camera-line">
+    <!-- <div class="camera-line">
       <div></div>
       <div class="centre-align">
         <PhotoCapture
@@ -12,249 +12,287 @@
         />
       </div>
       <div></div>
-    </div>
+    </div> -->
+    
     <form @submit.prevent="submit">
       <div class="row form-class">
-        <div class="col-md-3">
+        <div class="col-sm-3">
           <div class="form-group"></div>
         </div>
+      <!-- -------------- -->
+        <div>
+            <b-card bg-variant="light" text-variant="blue" title="Personal Information">
+              <div class = "row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >First Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      v-model.trim="$v.form.firstName.$model"
+                      :class="{ 'is-invalid': validationStatus($v.form.firstName)}"
+                      class="form-control form-control-sm"
+                    />
+                    <div v-if="!$v.form.firstName.required" class="invalid-feedback">
+                      The full name field is required.
+                    </div>
+                  </div>
+                </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >First Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              v-model.trim="$v.form.firstName.$model"
-              :class="{ 'is-invalid': validationStatus($v.form.firstName)}"
-              class="form-control form-control-lg"
-            />
-            <div v-if="!$v.form.firstName.required" class="invalid-feedback">
-              The full name field is required.
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >Middle Name (Optional)</label
+                    >
+                    <input
+                      type="text"
+                      v-model.trim="form.middleName"
+                      class="form-control form-control-sm"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >Last Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      v-model.trim="$v.form.lastName.$model"
+                      :class="{ 'is-invalid': validationStatus($v.form.lastName)}"
+                      class="form-control form-control-sm"
+
+                    />
+                    <div v-if="!$v.form.lastName.required" class="invalid-feedback">
+                      The Last name field is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >Date of Birth</label
+                    >
+                    <input
+                      type="date"
+                      v-model.trim="$v.form.dob.$model"
+                      class="form-control form-control-sm"
+                      :class="{ 'is-invalid': validationStatus($v.form.dob)}"
+                    />
+                    <div v-if="!$v.form.dob.required" class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >Gender <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      v-model.trim="$v.form.gender.$model"
+                      class="form-control form-control-sm"
+                      :class="{ 'is-invalid': validationStatus($v.form.gender)}"
+
+                    />
+                    <div v-if="!$v.form.gender.required" class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm">PASSPORT/DL</label>
+                    <input
+                      type="number"
+                      v-model.trim="$v.form.passport.$model"
+                      class="form-control form-control-sm"
+                      :class="{ 'is-invalid': validationStatus($v.form.passport)}"
+                    />
+                    <div v-if="!$v.form.passport.required" class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm">Race</label>
+                <input
+                  type="text"
+                  v-model.trim="$v.form.race.$model"
+                  class="form-control form-control-sm"
+                  :class="{ 'is-invalid': validationStatus($v.form.race)}"
+
+                />
+                <div v-if="!$v.form.race.required" class="invalid-feedback">
+                  This field is required.
+                </div>
+              </div>
+          </div>
+          
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">Ethnicity</label>
+              <input
+                type="text"
+                v-model.trim="$v.form.ethnicity.$model"
+                class="form-control form-control-sm"
+                :class="{ 'is-invalid': validationStatus($v.form.ethnicity)}"
+
+              />
+              <div v-if="!$v.form.ethnicity.required" class="invalid-feedback">
+                This field is required.
+              </div>
             </div>
           </div>
-        </div>
+          </div>
+      </b-card>
+        
+        <br>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Last Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              v-model.trim="$v.form.lastName.$model"
-              :class="{ 'is-invalid': validationStatus($v.form.lastName)}"
-              class="form-control form-control-lg"
+        <div>
+          <b-card bg-variant="light" text-variant="black" title="Contact Information">  
+          <div class="row">
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Mobile Number 1</label
+                >
+                <input
+                  type="number"
+                  v-model.trim="$v.form.mobileNumber.$model"
+                  :class="{ 'is-invalid': validationStatus($v.form.mobileNumber)}"
+                  class="form-control form-control-sm"
+                />
+                <div v-if="!$v.form.mobileNumber.required" class="invalid-feedback">
+                  The mobile number is required.
+                </div>
+              </div>
+            </div>
 
-            />
-            <div v-if="!$v.form.lastName.required" class="invalid-feedback">
-              The Last name field is required.
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Mobile Number (Optional)</label
+                >
+                <input
+                  type="number"
+                  v-model.trim="form.optionalMobile"
+                  class="form-control form-control-sm"
+                />
+              </div>
+            </div>
+
+        
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">Email <span class="text-danger">*</span></label>
+              <input type="email" v-model.trim="$v.form.email.$model" :class="{'is-invalid': validationStatus($v.form.email)}" class="form-control form-control-sm">
+              <div v-if="!$v.form.email.required" class="invalid-feedback">The email field is required.</div>
+              <div v-if="!$v.form.email.email" class="invalid-feedback">The email is not valid.</div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Middle Name (Optional)</label
-            >
-            <input
-              type="text"
-              v-model.trim="form.middleName"
-              class="form-control form-control-lg"
-            />
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Date of Birth</label
-            >
-            <input
-              type="date"
-              v-model.trim="$v.form.dob.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.dob)}"
-
-            />
-            <div v-if="!$v.form.dob.required" class="invalid-feedback">
-              The email field is required.
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">Email(optional)</label>
+              <input type="email" v-model.trim="form.optionalEmail" class="form-control form-control-sm">
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Gender <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              v-model.trim="$v.form.gender.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.gender)}"
-
-            />
-            <div v-if="!$v.form.gender.required" class="invalid-feedback">
-              The full name field is required.
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">Street</label>
+                <input
+                  type="text"
+                  v-model.trim="$v.form.street.$model"
+                  class="form-control form-control-sm"
+                  :class="{ 'is-invalid': validationStatus($v.form.street)}"
+                />
+              <div v-if="!$v.form.street.required" class="invalid-feedback">
+                The full name field is required.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md"
-              >Mobile Number 1</label
-            >
-            <input
-              type="number"
-              v-model.trim="$v.form.mobileNumber.$model"
-              :class="{ 'is-invalid': validationStatus($v.form.mobileNumber)}"
-              class="form-control form-control-lg"
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">Zip Code</label>
+              <input
+                type="text"
+                v-model.trim="$v.form.zipCode.$model"
+                class="form-control form-control-sm"
+                :class="{ 'is-invalid': validationStatus($v.form.zipCode)}"
 
-
-            />
-            <div v-if="!$v.form.mobileNumber.required" class="invalid-feedback">
-              The mobile number is required.
+              />
+              <div v-if="!$v.form.zipCode.required" class="invalid-feedback">
+                The full name field is required.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-                <label class="col-form-label col-form-label-lg">Email <span class="text-danger">*</span></label>
-                <input type="email" v-model.trim="$v.form.email.$model" :class="{'is-invalid': validationStatus($v.form.email)}" class="form-control form-control-lg">
-                <div v-if="!$v.form.email.required" class="invalid-feedback">The email field is required.</div>
-                <div v-if="!$v.form.email.email" class="invalid-feedback">The email is not valid.</div>
-          </div>
-        </div>
-<!--  -->
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">Race</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.race.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.race)}"
 
-            />
-            <div v-if="!$v.form.race.required" class="invalid-feedback">
-              This field is required.
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm">City</label>
+              <input
+                type="text"
+                v-model.trim="$v.form.city.$model"
+                class="form-control form-control-sm"
+                :class="{ 'is-invalid': validationStatus($v.form.city)}"
+              />
+              <div v-if="!$v.form.city.required" class="invalid-feedback">
+                The full name field is required.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">Ethnicity</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.ethnicity.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.ethnicity)}"
-
-            />
-            <div v-if="!$v.form.ethnicity.required" class="invalid-feedback">
-              This field is required.
+          <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm">State</label>
+                <input
+                  type="text"
+                  v-model.trim="$v.form.state.$model"
+                  class="form-control form-control-sm"
+                  :class="{ 'is-invalid': validationStatus($v.form.state)}"
+                />
+                <div v-if="!$v.form.state.required" class="invalid-feedback">
+                  This field is required.
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">Street</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.street.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.street)}"
-            />
-            <div v-if="!$v.form.street.required" class="invalid-feedback">
-              The full name field is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">Zip Code</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.zipCode.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.zipCode)}"
-
-            />
-            <div v-if="!$v.form.zipCode.required" class="invalid-feedback">
-              The full name field is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">City</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.city.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.city)}"
-            />
-            <div v-if="!$v.form.city.required" class="invalid-feedback">
-              The full name field is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">State</label>
-            <input
-              type="text"
-              v-model.trim="$v.form.state.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.state)}"
-            />
-            <div v-if="!$v.form.state.required" class="invalid-feedback">
-              This field is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="col-form-label col-form-label-md">PASSPORT/DL</label>
-            <input
-              type="number"
-              v-model.trim="$v.form.passport.$model"
-              class="form-control form-control-lg"
-              :class="{ 'is-invalid': validationStatus($v.form.passport)}"
-            />
-            <div v-if="!$v.form.passport.required" class="invalid-feedback">
-              The full name field is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-12 form-group text-center">
-          <button class="btn-success col-2">Submit Form</button>
-        </div>
+        </div>  
+     </b-card>
+    </div>
+    </div>
+    
+    
+    <div>
+      <br>
+      <div class="col-lg-12 form-group text-center">
+        <b-button pill variant="outline-primary" size="lg" @click="submit"> Next Form</b-button>
       </div>
-    </form>
+    </div>
+    
+    </div>
+  </form>
   </div>
 </template>
 <script>
 import {
   required,
   email,
-  //minLength,
-  //maxLength,
 } from "vuelidate/lib/validators";
 import { Api } from "@/services/Services";
-import "vue-media-recorder/src/assets/scss/main.scss";
-import { PhotoCapture } from "vue-media-recorder";
+//import "vue-media-recorder/src/assets/scss/main.scss";
+//import { PhotoCapture } from "vue-media-recorder";
 import AppLogger from "@/utils/AppLogger";
 
 export default {
@@ -268,6 +306,7 @@ export default {
         email: "",
         optionalEmail: "",
         mobileNumber: "",
+        mobileNumber2: "",
         passport: "",
         state: "",
         city: "",
@@ -285,7 +324,7 @@ export default {
     };
   },
   components: {
-    PhotoCapture,
+    //PhotoCapture,
   },
   validations: {
     form:{
@@ -321,15 +360,16 @@ export default {
       return typeof validation != "undefined" ? validation.$error : false;
     },
 
-    done(picture) {
-      this.form.imageBase64 = picture;
-    },
+    // done(picture) {
+    //   this.form.imageBase64 = picture;
+    // },
 
     submit() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       console.log("Form ", this.form);
       this.createFormData(this.form);
+      this.$router.push("/imageInfo");
 
       this.$v.$reset();
       this.resetData();

@@ -3,9 +3,12 @@ import App from './App.vue'
 import Vuelidate from 'vuelidate'
 import axios from 'axios'
 import router from "./router"
-
+import { BootstrapVue} from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 Vue.use(Vuelidate);
+Vue.use(BootstrapVue);
 Vue.prototype.$http = axios;
 
 new Vue({

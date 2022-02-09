@@ -16,6 +16,13 @@ const routes = [
         component: () =>
             import ("../views/insuranceform/InsuranceForm.vue"),
         
+    },
+    {
+        path: "/imageInfo",
+        name: "imageInfo",
+        component: () =>
+            import ("../views/cameraform/PersonalPhotoInput.vue"),
+        
     }
 ];
 
