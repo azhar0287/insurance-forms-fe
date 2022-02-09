@@ -135,7 +135,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 500px;
-
 }  
 
 .camera-button {
@@ -145,7 +144,7 @@ body {
 .camera-shutter {
   opacity: 0;
   width: 450px;
-  height: 337.5px;
+  height: 300.5px;
   background-color: #fff;
   position: absolute;
 }

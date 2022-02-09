@@ -22,13 +22,6 @@ data: function () {
 components: {
     CameraInput,
   },
-methods:{
-    submit: function () {
-              this.$router.push("/cardImage");
-
-    }
-}
-
 }
 </script>
 

@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-12 form-group text-center">
-          <button class="btn btn-vue btn-lg col-4">Sign in</button>
+          <b-button pill variant="outline-primary" size="lg" @click="submit"> Sign In</b-button>
         </div>
       </div>
     </form>

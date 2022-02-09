@@ -23,6 +23,13 @@ const routes = [
         component: () =>
             import ("../views/cameraform/PersonalPhotoInput.vue"),
         
+    },
+    {
+        path: "/cardImage",
+        name: "cardImage",
+        component: () =>
+            import ("../views/cameraform/PassportFileUpload.vue"),
+        
     }
 ];
 
