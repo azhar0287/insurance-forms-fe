@@ -1,19 +1,5 @@
 <template>
-  <div class="wrapper2">
-    <!-- <div class="camera-line">
-      <div></div>
-      <div class="centre-align">
-        <PhotoCapture
-          v-model="form.imageBase64"
-          captureBtnContent="Capture"
-          cancelBtnContent="Retake"
-          doneBtnContent="Use Image"
-          @input="done"
-        />
-      </div>
-      <div></div>
-    </div> -->
-    
+  <div class="wrapper2">  
     <form @submit.prevent="submit">
       <div class="row form-class">
         <div class="col-sm-3">
@@ -272,8 +258,7 @@
      </b-card>
     </div>
     </div>
-    
-    
+  
     <div>
       <br>
       <div class="col-lg-12 form-group text-center">
@@ -291,8 +276,6 @@ import {
   email,
 } from "vuelidate/lib/validators";
 import { Api } from "@/services/Services";
-//import "vue-media-recorder/src/assets/scss/main.scss";
-//import { PhotoCapture } from "vue-media-recorder";
 import AppLogger from "@/utils/AppLogger";
 
 export default {
@@ -324,7 +307,7 @@ export default {
     };
   },
   components: {
-    //PhotoCapture,
+    
   },
   validations: {
     form:{
@@ -338,16 +321,15 @@ export default {
       race: { required },
       ethnicity: { required },
       gender: { required },
-      // language: { required },
       dob: { required },
       passport: { required },
       street: { required },
     }
-    
-
   },
 
-  mounted: function () {},
+  mounted: function () {
+
+  },
 
   methods: {
     resetData: function () {
@@ -359,10 +341,6 @@ export default {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
-
-    // done(picture) {
-    //   this.form.imageBase64 = picture;
-    // },
 
     submit() {
       this.$v.$touch();
@@ -379,8 +357,8 @@ export default {
       Api.postFormData(body)
         .then((response) => {
           if (response.data.success) {
-            // console.log("Job Post Response", response);
-            // this.$router.push({name: 'admin', })
+            console.log("Job Post Response", response);
+            
           } else {
             console.log("Error");
           }
