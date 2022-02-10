@@ -104,14 +104,16 @@ export default {
       
       const context = this.$refs.canvas.getContext('2d');
       context.drawImage(this.$refs.camera, 0, 0, 450, 337.5);
-      console.log("con", context);
+      
     },
     
     downloadImage() {
-      const download = document.getElementById("downloadPhoto");
-      const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
-      .replace("image/jpeg", "image/octet-stream");
-      download.setAttribute("href", canvas);
+      //const download = document.getElementById("downloadPhoto");
+      const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg") //.replace("image/jpeg", "image/octet-stream");
+      //download.setAttribute("href", canvas);
+      //console.log("down ", canvas);
+      this.$emit('clicked-photo-content', canvas);
+
     }
   }
 }

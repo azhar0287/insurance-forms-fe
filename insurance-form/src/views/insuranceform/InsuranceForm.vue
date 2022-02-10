@@ -302,7 +302,8 @@ export default {
         country: "",
         street: "",
         optionalMobile: "",
-        imageBase64: null,
+        personalImageBase64: null,
+        insuranceIdImageBase64: null,
       },
     };
   },
@@ -346,6 +347,8 @@ export default {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       console.log("Form ", this.form);
+      localStorage.setItem("dataForm", this.form);
+      
       this.createFormData(this.form);
       this.$router.push("/imageInfo");
 

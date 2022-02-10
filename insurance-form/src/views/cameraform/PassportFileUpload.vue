@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CameraInput>
+        <CameraInput @clicked-photo-content="onPhotoClicked">
         </CameraInput>
        <div class="col-12 form-group text-center">
           <b-button variant="outline-primary"  @click="submit"> Next Form</b-button>
@@ -19,7 +19,14 @@ data: function () {
       cameraOpenFlag: false,
     };
   },
-components: {
+  
+  methods:{
+    onPhotoClicked(value) {
+    console.log("Phtolicked in parent", value);
+    } 
+  },
+  
+  components: {
     CameraInput,
   },
 }

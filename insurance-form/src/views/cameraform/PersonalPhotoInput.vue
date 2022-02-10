@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CameraInput>
+        <CameraInput @clicked-photo-content="onPhotoClicked">
         </CameraInput>
        <div class="col-12 form-group text-center">
           <b-button variant="outline-primary"  @click="submit"> Next Form</b-button>
@@ -24,8 +24,10 @@ components: {
   },
 methods:{
     submit: function () {
-              this.$router.push("/cardImage");
-
+      this.$router.push("/cardImage");
+    },
+    onPhotoClicked(value) {
+      console.log("Phtolicked in parent", value);
     }
 }
 

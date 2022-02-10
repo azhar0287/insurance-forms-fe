@@ -30,6 +30,13 @@ const routes = [
         component: () =>
             import ("../views/cameraform/PassportFileUpload.vue"),
         
+    },
+    {
+        path: "/formview",
+        name: "formview",
+        component: () =>
+            import ("../views/formview/FormView.vue"),
+        
     }
 ];
 
