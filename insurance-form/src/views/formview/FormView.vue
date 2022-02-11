@@ -8,7 +8,6 @@
                     </div>
                     <div>
                         <b-card bg-variant="light" text-variant="blue">
-
                         <b-card bg-variant="light" text-variant="blue" title="Personal Details">
                             <div class = "row">
                                 <div class="col-sm-3">
@@ -129,6 +128,7 @@
                     </div>
                     </div>
                     <div>
+                        <br>
                         <div class="col-lg-12 form-group text-center">
                             <b-button pill variant="outline-primary" size="lg" @click="submit"> Submit Form</b-button>
                         </div>
@@ -175,6 +175,8 @@ export default {
             console.log("Job Post Response", response);
             alert(response.data.description);
             localStorage.clear(); //clearing the local storage
+                  this.$router.push("/insurance");
+
           } else {
             console.log("Error");
           }
