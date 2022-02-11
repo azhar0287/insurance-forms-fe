@@ -28,7 +28,7 @@ const routes = [
         path: "/cardImage",
         name: "cardImage",
         component: () =>
-            import ("../views/cameraform/PassportFileUpload.vue"),
+            import ("../views/cameraform/InsruanceFileUpload.vue"),
         
     },
     {

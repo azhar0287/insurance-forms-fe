@@ -6,7 +6,7 @@
         <span v-else>Close Camera</span>
      </b-button>
   </div>
-  
+
   <div v-show="isCameraOpen && isLoading" class="camera-loading">
     <ul class="loader-circle">
       <li></li>
@@ -31,9 +31,13 @@
   </div>
   
   <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-    <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
-      Download
-    </a>
+    
+    <b-button variant="outline-primary" @click="downloadImage">
+      Save Image
+    </b-button>
+    <!-- <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
+    
+    </a> -->
   </div>
 </div>
 
@@ -49,8 +53,13 @@ export default {
       isLoading: false,
     }
   },
+  mounted: function () {
+        console.log("this called");
+      this.isCameraOpen = true;
+      this.createCameraElement();
   
-  methods: {
+  },
+  methods: {  
     toggleCamera() {
       if(this.isCameraOpen) {
         this.isCameraOpen = false;
@@ -65,7 +74,6 @@ export default {
     
     createCameraElement() {
       this.isLoading = true;
-      
       const constraints = (window.constraints = {
 				audio: false,
 				video: true

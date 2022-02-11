@@ -1,11 +1,12 @@
 <template>
     <div>
-        <CameraInput @clicked-photo-content="onPhotoClicked">
-        </CameraInput>
+      <b-card bg-variant="light" text-variant="blue" title="Personal Photo">
+      <CameraInput @clicked-photo-content="onPhotoClicked">
+      </CameraInput>
        <div class="col-12 form-group text-center">
-          <b-button variant="outline-primary"  @click="submit"> Next Form</b-button>
+          <b-button variant="outline-primary"  @click="submit"> Next </b-button>
         </div>
-
+      </b-card>
     </div>
   
 </template>
@@ -28,6 +29,7 @@ methods:{
     },
     onPhotoClicked(value) {
       console.log("Phtolicked in parent", value);
+      localStorage.setItem("personalPhoto", value);
     }
 }
 
