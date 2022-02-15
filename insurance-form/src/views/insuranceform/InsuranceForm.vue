@@ -283,6 +283,7 @@ export default {
   name: "InsuranceForm",
   data: function () {
     return {
+      editFormFlag: false,
       form: {
         firstName: "",
         lastName: "",
@@ -329,8 +330,13 @@ export default {
     }
   },
 
-  mounted: function () {
-
+  created: function () {
+    if(localStorage.getItem("editFlag")) {
+      this.editFormFlag = true;
+      this.form = JSON.parse(localStorage.getItem("dataForm")); //copy whole object
+    }
+    console.log("edit form", this.editFormFlag);
+    
   },
 
   methods: {
@@ -347,11 +353,20 @@ export default {
     submit() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
-      localStorage.setItem("dataForm", JSON.stringify(this.form));
-      this.$router.push("/imageInfo");
-
-      this.$v.$reset();
-      this.resetData();
+      if(this.editFormFlag == true) {
+        console.log("AAAAAAAAAA");
+        localStorage.setItem("dataForm", JSON.stringify(this.form));
+        localStorage.setItem("editFlag","false")
+        this.$router.push("/formview");
+      }
+      else{
+        localStorage.setItem("dataForm", JSON.stringify(this.form));
+        this.$router.push("/imageInfo");
+        this.$v.$reset();
+        this.resetData();
+      }
+      
+      
     },
   }
 };

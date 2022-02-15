@@ -130,7 +130,8 @@
                     <div>
                         <br>
                         <div class="col-lg-12 form-group text-center">
-                            <b-button pill variant="outline-primary" size="lg" @click="submit"> Submit Form</b-button>
+                            <b-button pill variant="outline-primary" size="lg" @click="submit"> Next </b-button>
+                            <b-button pill variant="outline-primary" size="lg" @click="editForm"> Edit Form</b-button>
                         </div>
                     </div>  
                     </b-card>
@@ -152,7 +153,7 @@ export default {
         };
     },
 
-    mounted: function () {
+    created: function () {
         console.log(" Final submit call");
         this.form = JSON.parse(localStorage.getItem("dataForm"));
     },
@@ -161,21 +162,27 @@ export default {
 
     editForm () {
         console.log("Edit form clicked");
+        localStorage.setItem("editFlag","true");
+        this.$router.push("/insurance");
+
     },
+    
     submit() {
     
         this.form.insuranceIdImage = localStorage.getItem("passport");
         this.form.personalImage = localStorage.getItem("personalPhoto");
         this.createFormData(this.form);
-    },    
+    },
+    
+
     createFormData(body) {
       Api.postFormData(body)
         .then((response) => {
           if (response.data.responseIdentifier == "Success") {
             console.log("Job Post Response", response);
             alert(response.data.description);
-            localStorage.clear(); //clearing the local storage
-                  this.$router.push("/insurance");
+            //localStorage.clear(); //clearing the local storage
+            this.$router.push("/insurance");
 
           } else {
             console.log("Error");
