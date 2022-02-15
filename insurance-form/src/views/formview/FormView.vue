@@ -130,8 +130,8 @@
                     <div>
                         <br>
                         <div class="col-lg-12 form-group text-center">
-                            <b-button pill variant="outline-primary" size="lg" @click="submit"> Next </b-button>
                             <b-button pill variant="outline-primary" size="lg" @click="editForm"> Edit Form</b-button>
+                            <b-button pill variant="outline-primary" size="lg" @click="submit"> Submit Form </b-button>
                         </div>
                     </div>  
                     </b-card>

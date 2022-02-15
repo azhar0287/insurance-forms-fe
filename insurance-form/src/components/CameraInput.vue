@@ -59,6 +59,11 @@ export default {
       this.createCameraElement();
   
   },
+  
+  unmounted: function (){
+    this.stopCameraStream();
+  },
+  
   methods: {  
     toggleCamera() {
       if(this.isCameraOpen) {
