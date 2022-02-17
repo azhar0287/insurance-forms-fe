@@ -182,6 +182,8 @@ export default {
             console.log("Job Post Response", response);
             alert(response.data.description);
             //localStorage.clear(); //clearing the local storage
+            window.open(response.data.responseCode, "_blank");    
+
             this.$router.push("/insurance");
 
           } else {
