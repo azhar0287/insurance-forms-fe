@@ -361,6 +361,7 @@ export default {
         optionalMobile: "",
         personalImage: null,
         insuranceIdImage: null,
+        selectedTags:[]
       },
     };
   },
@@ -407,19 +408,20 @@ export default {
 
     submit() {
       this.$v.$touch();
-      // if (this.$v.$pendding || this.$v.$error) return;
-      // if(this.editFormFlag == true) {
-      //   console.log("AAAAAAAAAA");
-      //   localStorage.setItem("dataForm", JSON.stringify(this.form));
-      //   localStorage.setItem("editFlag","false")
-      //   this.$router.push("/formview");
-      // }
-      // else{
-      //   localStorage.setItem("dataForm", JSON.stringify(this.form));
-      //   this.$router.push("/imageInfo");
-      //   this.$v.$reset();
-      //   this.resetData();
-      // }
+      this.form.selectedTags = this.selected;
+      if (this.$v.$pendding || this.$v.$error) return;
+      if(this.editFormFlag == true) {
+        console.log("AAAAAAAAAA");
+        localStorage.setItem("dataForm", JSON.stringify(this.form));
+        localStorage.setItem("editFlag","false")
+        this.$router.push("/formview");
+      }
+      else{
+        localStorage.setItem("dataForm", JSON.stringify(this.form));
+        this.$router.push("/imageInfo");
+        this.$v.$reset();
+        this.resetData();
+      }
       console.log("Formarray", this.selected);
       
       
