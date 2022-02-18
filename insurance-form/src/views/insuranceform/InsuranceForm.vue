@@ -260,6 +260,44 @@
           </div>  
         </b-card>
       </div>
+    
+    <br>
+
+    <b-card bg-variant="light" text-variant="blue" title="HRSA Eligibility Syptoms">
+            <div class = "row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <b-form-group
+                    v-slot="{ ariaDescribedby }"
+                  >
+                  <b-form-checkbox-group
+                    v-model="selected"
+                    :options="options"
+                    :aria-describedby="ariaDescribedby"
+                    name="flavour-2a"
+                    stacked
+                  ></b-form-checkbox-group>
+                  </b-form-group>          
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <b-form-group
+                    v-slot="{ ariaDescribedby }"
+                  >
+                  <b-form-checkbox-group
+                    v-model="selected"
+                    :options="options2"
+                    :aria-describedby="ariaDescribedby"
+                    name="flavour-2a"
+                    stacked
+                  ></b-form-checkbox-group>
+                  </b-form-group>                   
+                </div>
+              </div>
+            </div>
+    </b-card>
+
     </div>
     <br>
     <div>
@@ -284,6 +322,23 @@ export default {
   data: function () {
     return {
       editFormFlag: false,
+      selected: [], // Must be an array reference!
+        options: [
+          { text: 'FEVER/CHILLS (50.9)', value: '50.9' },
+          { text: 'DIFFICULTY BREATHING (R06.02)', value: 'R06.02' },
+          { text: 'FATIGUE (R53.83)', value: 'R53.83' },
+          { text: 'MUSCEL OR BODY ACHES (R52)', value: 'R52' },
+          { text: 'NEW LOSS OF TASTE AND SMELL (R51)', value: 'R51' },
+        ],
+        
+        options2:[
+          { text: 'SOAR THROAT (R07.0)', value: 'R07.0' },
+          { text: 'CONSGETION OR RUNNY NOSE (R09.81)', value: 'R09.81' },
+          { text: 'NAUSEA (R11.2)', value: 'R11.2'},
+          { text: 'VOMITING (R11.11)', value: 'R11.11'},
+          { text: 'DIARRHEA (R19.7)', value: 'R19.7'},
+        ],
+      
       form: {
         firstName: "",
         lastName: "",
@@ -352,19 +407,20 @@ export default {
 
     submit() {
       this.$v.$touch();
-      if (this.$v.$pendding || this.$v.$error) return;
-      if(this.editFormFlag == true) {
-        console.log("AAAAAAAAAA");
-        localStorage.setItem("dataForm", JSON.stringify(this.form));
-        localStorage.setItem("editFlag","false")
-        this.$router.push("/formview");
-      }
-      else{
-        localStorage.setItem("dataForm", JSON.stringify(this.form));
-        this.$router.push("/imageInfo");
-        this.$v.$reset();
-        this.resetData();
-      }
+      // if (this.$v.$pendding || this.$v.$error) return;
+      // if(this.editFormFlag == true) {
+      //   console.log("AAAAAAAAAA");
+      //   localStorage.setItem("dataForm", JSON.stringify(this.form));
+      //   localStorage.setItem("editFlag","false")
+      //   this.$router.push("/formview");
+      // }
+      // else{
+      //   localStorage.setItem("dataForm", JSON.stringify(this.form));
+      //   this.$router.push("/imageInfo");
+      //   this.$v.$reset();
+      //   this.resetData();
+      // }
+      console.log("Formarray", this.selected);
       
       
     },
