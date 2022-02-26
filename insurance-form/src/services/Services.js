@@ -26,9 +26,19 @@ export const Api = {
       })
       .catch(error => {
         throw error;
-      });
-  
+      });  
   },
 
+  //  async postFormData(body) {
+  //   const url = Endpoints.insuanceForm.formData;  
+  //   return await axios
+  //     .post(url, body)
+  //     .then(response => {
+  //       return response;
+  //     })
+  //     .catch(error => {
+  //       throw error;
+  //     });  
+  // },
 }
 

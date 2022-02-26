@@ -8,7 +8,6 @@ const routes = [
         name: "login",
         component: () =>
             import ("../views/Index.vue"),
-        
     },
     {
         path: "/insurance",
@@ -36,6 +35,13 @@ const routes = [
         name: "formview",
         component: () =>
             import ("../views/formview/FormView.vue"),
+        
+    },
+    {
+        path: "/dashboard",
+        name: "dashboard",
+        component: () =>
+            import ("../views/dashboard/Dashboard.vue"),
         
     }
 ];

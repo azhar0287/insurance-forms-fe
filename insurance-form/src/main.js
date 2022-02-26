@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
+Vue.use(require('vue-cookies'))
 Vue.prototype.$http = axios;
 
 new Vue({

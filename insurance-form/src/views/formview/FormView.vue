@@ -158,34 +158,33 @@ export default {
         this.form = JSON.parse(localStorage.getItem("dataForm"));
     },
 
-    methods:{
-
-    editForm () {
-        console.log("Edit form clicked");
-        localStorage.setItem("editFlag","true");
-        this.$router.push("/insurance");
+    methods: {
+        editForm () {
+            console.log("Edit form clicked");
+            localStorage.setItem("editFlag","true");
+            this.$router.push("/insurance");
 
     },
     
     submit() {
-    
         this.form.insuranceIdImage = localStorage.getItem("passport");
         this.form.personalImage = localStorage.getItem("personalPhoto");
         this.createFormData(this.form);
     },
     
-
     createFormData(body) {
       Api.postFormData(body)
         .then((response) => {
           if (response.data.responseIdentifier == "Success") {
-            console.log("Job Post Response", response);
+            console.log("Create Form Response", response);
             alert(response.data.description);
             //localStorage.clear(); //clearing the local storage
-            window.open(response.data.responseCode, "_blank");    
-
+            if(response.data.printDocLink != null) {
+                window.open(response.data.marquisPdfLink, "_blank");    
+                window.open(response.data.firstToxPdfLink, "_blank");    
+                window.open(response.data.firstToxLabelLink, "_blank");
+            }
             this.$router.push("/insurance");
-
           } else {
             console.log("Error");
           }
@@ -199,6 +198,7 @@ export default {
 </script>
 
 <style>
+
 .wrapper3 {
   background: white;
   height: 100vh;
