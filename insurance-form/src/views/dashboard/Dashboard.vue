@@ -5,6 +5,14 @@
                 <div class="form-group">
                     <br>
                     <div class="col-lg-12">
+                        <b-overlay
+                            id="overlay-background"
+                            :show = "show"
+                            :variant="variant"
+                            :opacity="opacity"
+                            :blur="blur"
+                            rounded="md"
+                            >
                         <b-card bg-variant="light" text-variant="blue" title="Dashboard">
                             <br>
                             <b-card bg-variant="light" text-variant="blue" title="">
@@ -37,10 +45,8 @@
                                     </div>
                                 </div>
                             </b-card>
-                            <!-- <div class="d-flex justify-content-center mb-3">
-                                <b-spinner label="Loading..."></b-spinner>
-                            </div> -->
-                            <div>
+                           
+                           <div>
                                 <br>
                                 <div class="col-lg-12 form-group text-center">
                                     <b-button pill variant="outline-primary" size="lg" @click="refresh"> Refresh Stats</b-button>
@@ -49,8 +55,8 @@
                             </div>  
 
                         </b-card>
-                    </div>
-                        
+                        </b-overlay>
+                    </div>              
                 </div>
             </div>
        </form>
@@ -65,6 +71,7 @@ export default {
         return {
         dailyCount:10,
         weeklyCount:100,
+        show: false
         };
     },
 
@@ -80,7 +87,7 @@ export default {
             .then((response) => {
             if (response.data.responseIdentifier == "Success") {
                 console.log("Create Form Response", response);
-                //localStorage.clear(); //clearing the local storage
+                this.show = false;
             } else {
                 console.log("Error");
             }
@@ -95,7 +102,9 @@ export default {
         },
 
         refresh() {
+            this.show = true;
             this.getOrderStatistics();
+
         }
 
 

@@ -1,6 +1,6 @@
 <template>
   <div class="vue-bg1">
-    <b-navbar toggleable="lg" type="dark" variant="info"  v-if="!['login'].includes($route.name)">
+    <b-navbar toggleable="lg" type="dark" variant="info"  v-if="!['login','imageInfo','cardImage'].includes($route.name)">
       <b-navbar-brand href="#">Sethi Labs</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

@@ -10,7 +10,7 @@ const routes = [
             import ("../views/Index.vue"),
     },
     {
-        path: "/insurance",
+        path: "/create-order",
         name: "insurance",
         component: () =>
             import ("../views/insuranceform/InsuranceForm.vue"),

@@ -411,20 +411,17 @@ export default {
       this.form.selectedTags = this.selected;
       if (this.$v.$pendding || this.$v.$error) return;
       if(this.editFormFlag == true) {
-        console.log("AAAAAAAAAA");
         localStorage.setItem("dataForm", JSON.stringify(this.form));
         localStorage.setItem("editFlag","false")
         this.$router.push("/formview");
       }
-      else{
+      else {
         localStorage.setItem("dataForm", JSON.stringify(this.form));
         this.$router.push("/imageInfo");
         this.$v.$reset();
         this.resetData();
       }
-      console.log("Formarray", this.selected);
-      
-      
+      console.log("Formarray", this.selected);      
     },
   }
 };
