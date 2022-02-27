@@ -97,7 +97,7 @@ export default {
         .then((response) => {
           console.log("Response", response);
           if (response.data.responseIdentifier=="Success") {
-            this.$router.push("/insurance");
+            this.$router.push("/create-order");
             this.$v.$reset();
             this.resetData();
           } else {
