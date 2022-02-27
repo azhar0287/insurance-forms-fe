@@ -1,9 +1,9 @@
 <template>
-    <div class="wrapper3">
+    <div class="">
         <form>
             <div class="row form-class">
                 <div class="form-group">
-                    <div class="col-sm-3">
+                    <div class="col-md-6">
                         <div class="form-group"></div>
                     </div>
                     <div>
@@ -169,20 +169,19 @@ export default {
     submit() {
         this.form.insuranceIdImage = localStorage.getItem("passport");
         this.form.personalImage = localStorage.getItem("personalPhoto");
-        this.createFormData(this.form);
+        this.createFormDataMarquis(this.form);
+       // this.createFormDataFirstox(this.form);
     },
     
-    createFormData(body) {
-      Api.postFormData(body)
+    createFormDataFirstox(body) {
+      Api.postFormDataFirstox(body)
         .then((response) => {
           if (response.data.responseIdentifier == "Success") {
             console.log("Create Form Response", response);
-            alert(response.data.description);
             //localStorage.clear(); //clearing the local storage
             if(response.data.printDocLink != null) {
-                window.open(response.data.marquisPdfLink, "_blank");    
-                window.open(response.data.firstToxPdfLink, "_blank");    
-                window.open(response.data.firstToxLabelLink, "_blank");
+                window.open(response.data.printDocLink.firstToxPdfLink, "_blank");    
+                // window.open(response.data.firstToxLabelLink, "_blank");
             }
             this.$router.push("/insurance");
           } else {
@@ -193,6 +192,27 @@ export default {
           AppLogger.log(error);
         });
     },
+
+    createFormDataMarquis(body) {
+      Api.postFormDataMarquis(body)
+        .then((response) => {
+          if (response.data.responseIdentifier == "Success") {
+            console.log("Create Form Response marquis", response);
+            alert(response.data.description);
+            //localStorage.clear(); //clearing the local storage
+            if(response.data.printDocLink != null) {
+                window.open(response.data.printDocLink.marquisPdfLink, "_blank");
+            }
+            this.$router.push("/insurance");
+          } else {
+            console.log("Error");
+          }
+        })
+        .catch((error) => {
+          AppLogger.log(error);
+        });
+    },
+    
     }
 }
 </script>

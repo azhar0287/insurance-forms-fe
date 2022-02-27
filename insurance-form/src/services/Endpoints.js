@@ -8,7 +8,10 @@ export default {
   },
     
   insuanceForm: {
-    formData:apiBase + '/insuranceData',
+    marquis:apiBase + '/insuranceData/marquis',
+    firstox:apiBase + '/insuranceData/firstox',
+
+    orderStats:apiBase +'/orders/count'
   },
   
 

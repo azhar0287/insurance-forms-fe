@@ -1,49 +1,60 @@
 <template>
-    <div class="wrapper3">
+    <div class="">
         <form>
             <div class="row form-class">
                 <div class="form-group">
-                    <div class="col-sm-3">
-                        <div class="form-group"></div>
+                    <br>
+                    <div class="col-lg-12">
+                        <b-card bg-variant="light" text-variant="blue" title="Dashboard">
+                            <br>
+                            <b-card bg-variant="light" text-variant="blue" title="">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm">
+                                        <b>Daily counter</b> </label
+                                    >
+                                    &nbsp;
+                                    <label class="col-form-label col-form-label-sm">
+                                     {{dailyCount}}</label
+                                    >
+                                    </div>
+                                </div>
+                                
+                            </b-card>
+                            
+                            <br>
+                            
+                            <b-card bg-variant="light" text-variant="blue" title="">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label class="col-form-label col-form-label-sm">
+                                        <b>Weekly counter</b> </label
+                                    >
+                                    &nbsp;
+                                    <label class="col-form-label col-form-label-sm">
+                                     {{weeklyCount}}</label
+                                    >
+                                    </div>
+                                </div>
+                            </b-card>
+                            <!-- <div class="d-flex justify-content-center mb-3">
+                                <b-spinner label="Loading..."></b-spinner>
+                            </div> -->
+                            <div>
+                                <br>
+                                <div class="col-lg-12 form-group text-center">
+                                    <b-button pill variant="outline-primary" size="lg" @click="refresh"> Refresh Stats</b-button>
+                                    <b-button pill variant="outline-primary" size="lg" @click="homeButtonClicked"> BackTo Home</b-button>
+                                </div>
+                            </div>  
+
+                        </b-card>
                     </div>
-                     <b-card bg-variant="light" text-variant="blue" title="HRSA Eligibility Syptoms">
-            <div class = "row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <b-form-group
-                    v-slot="{ ariaDescribedby }"
-                  >
-                  <b-form-checkbox-group
-                    v-model="selected"
-                    :options="options"
-                    :aria-describedby="ariaDescribedby"
-                    name="flavour-2a"
-                    stacked
-                  ></b-form-checkbox-group>
-                  </b-form-group>          
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <b-form-group
-                    v-slot="{ ariaDescribedby }"
-                  >
-                  <b-form-checkbox-group
-                    v-model="selected"
-                    :options="options2"
-                    :aria-describedby="ariaDescribedby"
-                    name="flavour-2a"
-                    stacked
-                  ></b-form-checkbox-group>
-                  </b-form-group>                   
-                </div>
-              </div>
-            </div>
-    </b-card>
+                        
                 </div>
             </div>
-    </form>
-</div>
+       </form>
+    </div>
 </template>
 
 <script>
@@ -52,59 +63,47 @@ import AppLogger from "@/utils/AppLogger";
 export default {
     data: function () {
         return {
-        form:null,
+        dailyCount:10,
+        weeklyCount:100,
         };
     },
 
     created: function () {
-        console.log(" Final submit call");
-        this.form = JSON.parse(localStorage.getItem("dataForm"));
+        console.log(" Getting order statistics");
+        this.getOrderStatistics();
+        
     },
 
     methods: {
-        editForm () {
-            console.log("Edit form clicked");
-            localStorage.setItem("editFlag","true");
+        getOrderStatistics() {
+            Api.getOrderStats()
+            .then((response) => {
+            if (response.data.responseIdentifier == "Success") {
+                console.log("Create Form Response", response);
+                //localStorage.clear(); //clearing the local storage
+            } else {
+                console.log("Error");
+            }
+            })
+            .catch((error) => {
+            AppLogger.log(error);
+            });
+        },
+        
+        homeButtonClicked () {
             this.$router.push("/insurance");
+        },
+
+        refresh() {
+            this.getOrderStatistics();
+        }
+
 
     },
     
-    submit() {
-        this.form.insuranceIdImage = localStorage.getItem("passport");
-        this.form.personalImage = localStorage.getItem("personalPhoto");
-        this.createFormData(this.form);
-    },
-    
-    createFormData(body) {
-      Api.postFormData(body)
-        .then((response) => {
-          if (response.data.responseIdentifier == "Success") {
-            console.log("Create Form Response", response);
-            alert(response.data.description);
-            //localStorage.clear(); //clearing the local storage
-            if(response.data.printDocLink != null) {
-                window.open(response.data.marquisPdfLink, "_blank");    
-                window.open(response.data.firstToxPdfLink, "_blank");    
-                window.open(response.data.firstToxLabelLink, "_blank");
-            }
-            this.$router.push("/insurance");
-          } else {
-            console.log("Error");
-          }
-        })
-        .catch((error) => {
-          AppLogger.log(error);
-        });
-    },
-    }
 }
 </script>
 
 <style>
 
-.wrapper3 {
-  background: white;
-  height: 100vh;
-  width: 95%;
-}
 </style>
