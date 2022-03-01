@@ -24,7 +24,6 @@
                                     >
                                     </div>
                                 </div>
-                                
                             </b-card>
                             
                             <br>
@@ -66,8 +65,8 @@ import AppLogger from "@/utils/AppLogger";
 export default {
     data: function () {
         return {
-        dailyCount:10,
-        weeklyCount:100,
+        dailyCount:'',
+        weeklyCount:'',
         show: false
         };
     },
