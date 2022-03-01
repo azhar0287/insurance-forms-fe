@@ -41,18 +41,18 @@ export const Api = {
       });  
   },
 
-
   async getOrderStats() {
-    const url = Endpoints.insuanceForm.orderStats;  
-    return await axios
-      .get(url)
-      .then(response => {
-        return response;
-      })
-      .catch(error => {
-        throw error;
-      });  
-  },
-
+    const url = Endpoints.insuanceForm.orderStats;
+    
+      console.log("Url", url);
+      return await axios
+        .get(url)
+        .then(response => {
+          return response;
+        })
+        .catch(error => {
+          throw error;
+        });
+      },
 }
 

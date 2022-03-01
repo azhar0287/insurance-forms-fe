@@ -8,9 +8,6 @@
                         <b-overlay
                             id="overlay-background"
                             :show = "show"
-                            :variant="variant"
-                            :opacity="opacity"
-                            :blur="blur"
                             rounded="md"
                             >
                         <b-card bg-variant="light" text-variant="blue" title="Dashboard">
@@ -78,19 +75,16 @@ export default {
     created: function () {
         console.log(" Getting order statistics");
         this.getOrderStatistics();
-        
     },
 
     methods: {
         getOrderStatistics() {
             Api.getOrderStats()
             .then((response) => {
-            if (response.data.responseIdentifier == "Success") {
-                console.log("Create Form Response", response);
-                this.show = false;
-            } else {
-                console.log("Error");
-            }
+               console.log("Response ", response); 
+               this.show = false;
+               this.dailyCount = response.data.dailyCount;
+               this.weeklyCount = response.data.weeklyCount; 
             })
             .catch((error) => {
             AppLogger.log(error);
@@ -104,9 +98,7 @@ export default {
         refresh() {
             this.show = true;
             this.getOrderStatistics();
-
         }
-
 
     },
     
