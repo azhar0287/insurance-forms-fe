@@ -97,13 +97,9 @@
                     <label class="col-form-label col-form-label-sm">PASSPORT/DL</label>
                     <input
                       type="number"
-                      v-model.trim="$v.form.passport.$model"
+                      v-model.trim="form.passport"
                       class="form-control form-control-sm"
-                      :class="{ 'is-invalid': validationStatus($v.form.passport)}"
                     />
-                    <div v-if="!$v.form.passport.required" class="invalid-feedback">
-                      This field is required.
-                    </div>
                   </div>
                 </div>
 
@@ -140,6 +136,7 @@
           </div>
           </div>
       </b-card>
+      
       <br>
         <!-- ------------- -->
           <b-card bg-variant="light" text-variant="black" title="Contact Information">  
@@ -381,7 +378,6 @@ export default {
       ethnicity: { required },
       gender: { required },
       dob: { required },
-      passport: { required },
       street: { required },
     }
   },

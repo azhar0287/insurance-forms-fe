@@ -98,7 +98,6 @@ export default {
             this.show = true;
             this.getOrderStatistics();
         }
-
     },
     
 }

@@ -240,7 +240,7 @@ export default {
         this.form.insuranceIdImage = localStorage.getItem("passport");
         this.form.personalImage = localStorage.getItem("personalPhoto");
         this.createFormDataMarquis(this.form);
-       // this.createFormDataFirstox(this.form);
+        this.createFormDataFirstox(this.form);
         this.show = false;
     },
     
@@ -252,7 +252,7 @@ export default {
             //localStorage.clear(); //clearing the local storage
             if(response.data.printDocLink != null) {
                 window.open(response.data.printDocLink.firstToxPdfLink, "_blank");    
-                // window.open(response.data.firstToxLabelLink, "_blank");
+                // window.open(response.data.printDocLink.firstToxLabelLink, "_blank");
             }
             this.$router.push("/create-order");
           } else {
