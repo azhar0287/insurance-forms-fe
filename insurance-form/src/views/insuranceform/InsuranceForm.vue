@@ -108,14 +108,9 @@
                 <label class="col-form-label col-form-label-sm">Race</label>
                 <input
                   type="text"
-                  v-model.trim="$v.form.race.$model"
+                  v-model.trim="form.race"
                   class="form-control form-control-sm"
-                  :class="{ 'is-invalid': validationStatus($v.form.race)}"
-
                 />
-                <div v-if="!$v.form.race.required" class="invalid-feedback">
-                  This field is required.
-                </div>
               </div>
           </div>
           
@@ -124,14 +119,9 @@
               <label class="col-form-label col-form-label-sm">Ethnicity</label>
               <input
                 type="text"
-                v-model.trim="$v.form.ethnicity.$model"
+                v-model.trim="form.ethnicity"
                 class="form-control form-control-sm"
-                :class="{ 'is-invalid': validationStatus($v.form.ethnicity)}"
-
               />
-              <div v-if="!$v.form.ethnicity.required" class="invalid-feedback">
-                This field is required.
-              </div>
             </div>
           </div>
           </div>
@@ -374,8 +364,6 @@ export default {
       state: { required },
       city: { required },
       zipCode: { required },
-      race: { required },
-      ethnicity: { required },
       gender: { required },
       dob: { required },
       street: { required },

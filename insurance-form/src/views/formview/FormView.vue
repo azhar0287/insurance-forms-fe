@@ -269,7 +269,7 @@ export default {
         .then((response) => {
           if (response.data.responseIdentifier == "Success") {
             console.log("Create Form Response marquis", response);
-            alert(response.data.description);
+            //alert(response.data.description);
             localStorage.clear(); //clearing the local storage
             if(response.data.printDocLink != null) {
                 window.open(response.data.printDocLink.marquisPdfLink, "_blank");
