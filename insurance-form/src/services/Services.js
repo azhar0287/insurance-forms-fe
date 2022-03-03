@@ -53,6 +53,21 @@ export const Api = {
         .catch(error => {
           throw error;
         });
-      },
+  },
+
+  async getOrderStatsTable() {
+    const url = Endpoints.insuanceForm.orderStatsTable;
+    
+      console.log("Url", url);
+      return await axios
+        .get(url)
+        .then(response => {
+          return response;
+        })
+        .catch(error => {
+          throw error;
+        });
+  },
+
 }
 

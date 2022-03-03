@@ -10,7 +10,8 @@ export default {
   insuanceForm: {
     marquis:apiBase + '/insuranceData/marquis',
     firstox:apiBase + '/insuranceData/firstox',
-    orderStats:apiBase +'/insuranceData/orders/count'
+    orderStats:apiBase +'/insuranceData/orders/count',
+    orderStatsTable:apiBase + '/insuranceData/orders/table'
   },
   
 
