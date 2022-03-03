@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div>
         <form>
             <div class="row form-class">
                 <div class="form-group">
