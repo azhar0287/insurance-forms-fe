@@ -11,7 +11,8 @@ export default {
     marquis:apiBase + '/insuranceData/marquis',
     firstox:apiBase + '/insuranceData/firstox',
     orderStats:apiBase +'/insuranceData/orders/count',
-    orderStatsTable:apiBase + '/insuranceData/orders/table'
+    orderStatsTable:apiBase + '/insuranceData/orders/table',
+    testPdf:apiBase + '/insuranceData/pdf'
   },
   
 

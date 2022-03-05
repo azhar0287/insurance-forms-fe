@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-bg1">
+  <div class="vue-bg1" style="width: 100%">
     <b-navbar toggleable="lg" type="dark" variant="dark"  v-if="!['login','imageInfo','cardImage'].includes($route.name)">
       <b-navbar-brand href="#">
       <!-- <img   src="./assets/logo.jpg" height="50px" width="50px">     -->

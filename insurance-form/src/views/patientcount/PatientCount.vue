@@ -73,6 +73,7 @@ import AppLogger from "@/utils/AppLogger";
   },  
     created: function () {
         console.log(" Getting order statistics");
+        this.show = true;
         this.getOrderStatistics();
     },
 

@@ -60,7 +60,7 @@
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label class="col-form-label col-form-label-sm"
-                      >Date of Birth</label
+                      >Date of Birth<span class="text-danger">*</span></label
                     >
                     <input
                       type="date"
@@ -134,7 +134,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label class="col-form-label col-form-label-sm"
-                    >Mobile Number 1</label
+                    >Mobile Number 1<span class="text-danger">*</span></label
                   >
                   <input
                     type="number"
@@ -163,7 +163,7 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="col-form-label col-form-label-sm">Email <span class="text-danger">*</span></label>
+                <label class="col-form-label col-form-label-sm">Email <span class="text-danger">*</span><span class="text-danger">*</span></label>
                 <input type="email" v-model.trim="$v.form.email.$model" :class="{'is-invalid': validationStatus($v.form.email)}" class="form-control form-control-sm">
                 <div v-if="!$v.form.email.required" class="invalid-feedback">The email field is required.</div>
                 <div v-if="!$v.form.email.email" class="invalid-feedback">The email is not valid.</div>
@@ -186,7 +186,7 @@
             <div class = "row">
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label class="col-form-label col-form-label-sm">Street</label>
+                  <label class="col-form-label col-form-label-sm">Street <span class="text-danger">*</span></label>
                     <input
                       type="text"
                       v-model.trim="$v.form.street.$model"
@@ -201,7 +201,7 @@
 
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label class="col-form-label col-form-label-sm">Zip Code</label>
+                  <label class="col-form-label col-form-label-sm">Zip Code <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     v-model.trim="$v.form.zipCode.$model"
@@ -217,7 +217,7 @@
 
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label class="col-form-label col-form-label-sm">City</label>
+                  <label class="col-form-label col-form-label-sm">City <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     v-model.trim="$v.form.city.$model"
@@ -232,7 +232,7 @@
 
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label class="col-form-label col-form-label-sm">State</label>
+                  <label class="col-form-label col-form-label-sm">State <span class="text-danger">*</span></label>
                   <input
                     type="text"
                     v-model.trim="$v.form.state.$model"

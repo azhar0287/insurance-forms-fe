@@ -252,7 +252,9 @@ export default {
             //localStorage.clear(); //clearing the local storage
             if(response.data.printDocLink != null) {
                 window.open(response.data.printDocLink.firstToxPdfLink, "_blank");    
-                // window.open(response.data.printDocLink.firstToxLabelLink, "_blank");
+                //window.open(response.data.printDocLink.firstToxLabelLink, "_blank");
+                window.open("data:application/pdf;base64, " + response.data.printDocLink.pdf);
+
             }
             this.$router.push("/create-order");
           } else {
@@ -285,6 +287,151 @@ export default {
         });
     },
     
+    openLabel() {
+        Api.getPdfContent()
+        .then((response) => {
+
+            this.show  = false;
+            let popupWin=null;
+            popupWin = window.open('', '_blank', 'top=0,left=0,height=700,width=1000;');
+            let fileContents = "data:application/pdf;base64," + response.data
+            console.log("file", fileContents);
+            popupWin.document.write(`
+                <html>
+                    <head>
+                        <!--title>Print tab</title-->
+                        <style>
+                            #buttons{display:none;}
+                                body {
+                                margin: 0;
+                                font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                                font-size: 1rem;
+                                font-weight: 400;
+                                line-height: 1.5;
+                                color: #212529;
+                                text-align: left;
+                                background-color: #fff;
+                            }
+
+                            button, meter, progress {
+                                -webkit-writing-mode: horizontal-tb !important;
+                            }
+
+
+                            input, textarea, select, button {
+                                text-rendering: auto;
+                                color: initial;
+                                letter-spacing: normal;
+                                word-spacing: normal;
+                                text-transform: none;
+                                text-indent: 0px;
+                                text-shadow: none;
+                                display: inline-block;
+                                text-align: start;
+                                margin: 0em;
+                                font: 400 13.3333px Arial;
+                            }
+
+                            input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+                                align-items: flex-start;
+                                text-align: center;
+                                cursor: default;
+                                color: buttontext;
+                                background-color: buttonface;
+                                box-sizing: border-box;
+                                padding: 2px 6px 3px;
+                                border-width: 2px;
+                                border-style: outset;
+                                border-color: buttonface;
+                                border-image: initial;
+                            }
+
+                            input, button, select, optgroup, textarea {
+                                margin: 0;
+                                font-family: inherit;
+                                font-size: inherit;
+                                line-height: inherit;
+                            }
+
+                            button, select {
+                                text-transform: none;
+                            }
+
+                            .btn {
+                                display: inline-block;
+                                font-weight: 400;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: middle;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                border: 1px solid transparent;
+                                padding: 0.375rem 0.75rem;
+                                font-size: 1rem;
+                                line-height: 1.5;
+                                border-radius: 0.25rem;
+                                transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                            }
+
+                            .btn-outline-primary {
+                                color: #007bff;
+                                background-color: transparent;
+                                background-image: none;
+                                border-color: #007bff;
+                            }
+
+                            .btn-outline-primary {
+                                color: #ffffff;
+                                border-color: #d03232;
+                                background-color: #d03232;
+                            }
+
+                            element.style {
+                            }
+                            <style>.fa {
+                                display: inline-block;
+                                font: normal normal normal 14px/1 FontAwesome;
+                                font-size: inherit;
+                                text-rendering: auto;
+                                -webkit-font-smoothing: antialiased;
+                                -moz-osx-font-smoothing: grayscale;
+                            }</style>
+
+                            <style>*, *::before, *::after {
+                                box-sizing: border-box;
+                            }
+                            Style Attribute {
+                                cursor: pointer;
+                            }
+
+                            .btn, .form-control {
+                                padding: 0.25rem 0.5rem;
+                                font-size: 0.875rem;
+                                line-height: 1.5;
+                                border-radius: 0.3rem;
+                                margin: 15px;
+                                margin-right: 23px;
+                            }</style>
+
+                        </style>
+                    </head>
+                    <body onload="">
+                        <div style="text-align:right;" >
+                            <a href="${fileContents}" download="${document.documentName}"><button class="btn btn-sm btn-outline-primary">Download</button></a>
+                        </div>
+                        <br>
+                        <iframe src='${fileContents}'  style="min-width: 100%;height: 100%;" ></iframe>
+                    </body>
+                </html>`
+                ); 
+            window.open("data:application/pdf;base64," + response.data, '_blank');
+        })
+        .catch((error) => {
+          AppLogger.log(error);
+        });
+    }
     }
 }
 </script>

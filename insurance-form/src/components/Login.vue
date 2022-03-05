@@ -1,6 +1,12 @@
 <template>
   <div class="main-content">
     <form id="signup-form" v-on:submit.prevent="submit">
+       <b-overlay
+          id="overlay-background"
+          :show = "show"
+          rounded="md"
+        >
+       </b-overlay>
       <div class="row">
         <div class="col-12 form-group">
           <label class="col-form-label col-form-label-lg"
@@ -66,6 +72,7 @@ export default {
     return {
       email: "",
       password: "",
+      show:false
     };
   },
   validations: {
@@ -86,6 +93,7 @@ export default {
     },
 
     submit: function () {
+      this.show = true;
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       
@@ -93,10 +101,12 @@ export default {
         email:this.email,
         password:this.password
       }
+
       AuthService.signIn(user)
         .then((response) => {
           console.log("Response", response);
           if (response.data.responseIdentifier=="Success") {
+            this.show  = false;
             this.$router.push("/create-order");
             this.$v.$reset();
             this.resetData();
@@ -104,13 +114,13 @@ export default {
             alert("Please provide correct email and password")
             this.$v.$reset();
             this.resetData();
-
+            this.show  = false;
           }
         })
         .catch((error) => {
           AppLogger.log(error);
         });
-    },
+      },
 
     
     },
