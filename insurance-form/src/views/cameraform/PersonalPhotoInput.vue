@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-card bg-variant="light" text-variant="blue" title="Personal Photo">
+      <b-card bg-variant="light" text-variant="blue" title="Personal Photo" class="text-center">
       <CameraInput @clicked-photo-content="onPhotoClicked">
       </CameraInput>
        <div class="col-12 form-group text-center">

@@ -149,7 +149,7 @@ body {
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 500px;
+  /* width: 500px; */
 }  
 
 .camera-button {

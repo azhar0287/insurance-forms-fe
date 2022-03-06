@@ -291,6 +291,8 @@
       <br>
       <div class="col-lg-12 form-group text-center">
         <b-button pill variant="outline-primary" size="lg" @click="submit"> Next Form</b-button>
+        <b-button pill variant="outline-primary" size="lg" @click="submitTestData"> Fill Test Data</b-button>
+
       </div>
     </div>  
     
@@ -407,6 +409,32 @@ export default {
       }
       console.log("Formarray", this.selected);      
     },
+
+    submitTestData() {
+      this.form = {  
+        "firstName": "Sameer",
+        "lastName": "Sethi",
+        "middleName": "AA",
+        "email": "sameer@gmail.com",
+        "optionalEmail": "",
+        "mobileNumber": "1236526262225",
+        "passport": "2111",
+        "state": "TX",
+        "city": "Dallas",
+        "zipCode": "75094",
+        "race": "other",
+        "ethnicity": "other",
+        "gender": "MALE",
+        "dob": "1998-01-28",
+        "language": "",
+        "country": "",
+        "street": "427 Ave Az",
+        "optionalMobile": "",
+      }
+      console.log("form test", this.form);      
+    },
+
+
   }
 };
 </script>
