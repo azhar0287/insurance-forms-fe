@@ -63,8 +63,13 @@ import AppLogger from "@/utils/AppLogger";
           sortable: false
         },
         {
-          key: 'cltDate',
-          label:'Collection Datetime',
+          key: 'collectionDate',
+          label:'Collection Date',
+          sortable: true
+        },
+         {
+          key: 'collectionTime',
+          label:'Collection Time',
           sortable: true
         },
       ],
