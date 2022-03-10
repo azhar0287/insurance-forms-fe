@@ -8,9 +8,20 @@
 
         
       <b-navbar-nav class="ml-auto">
-         <b-nav-form>
+        <b-nav-form>
+          <b-nav-item class="app-nav-link active md my-2 my-sm-0" :to="{ name: 'insurance' }">Create Order</b-nav-item>               
+        </b-nav-form>
+        
+        <b-nav-form>
+          <b-nav-item class="app-nav-link active md my-2 my-sm-0" :to="{ name: 'patientCount' }">Patient Count</b-nav-item>               
+        </b-nav-form>
+
+        
+        <b-nav-form>
           <b-nav-item class="app-nav-link active md my-2 my-sm-0" :to="{ name: 'dashboard' }">Dashboard</b-nav-item>               
         </b-nav-form>
+
+
       </b-navbar-nav>
 
       </b-navbar>
