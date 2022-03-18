@@ -4,16 +4,15 @@ const apiBase = process.env.VUE_APP_API_BASE;
 export default {
   
   auth: {
-    login: apiBase + '/insuranceData/user/signIn'
+    login: apiBase + '/PatientOrder/user/signIn'
   },
     
   insuanceForm: {
-    marquis:apiBase + '/insuranceData/marquis',
-    firstox:apiBase + '/insuranceData/firstox',
-    orderStats:apiBase +'/insuranceData/orders/count',
-    orderStatsTable:apiBase + '/insuranceData/orders/table',
-    testPdf:apiBase + '/insuranceData/pdf'
+    marquis:apiBase + '/PatientOrder/marquis',
+    firstox:apiBase + '/PatientOrder/firstox',
+    orderStats:apiBase +'/PatientOrder/orders/count',
+    orderStatsTable:apiBase + '/PatientOrder/orders/table',
+    testPdf:apiBase + '/PatientOrder/pdf'
   },
   
-
 }

@@ -200,13 +200,6 @@
                   class="form-control form-control-sm">
                 </b-form-select>
 
-                <!-- <input
-                  type="number"
-                  v-model.trim="$v.form.mobileNumber.$model"
-                  :class="{ 'is-invalid': validationStatus($v.form.mobileNumber)}"
-                  class="form-control form-control-sm"
-                /> -->
-
                 <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
                   The Insurance name is required.
                 </div>
@@ -226,7 +219,7 @@
                   class="form-control form-control-sm"
                 />
                 <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
-                  The Insurance name is required.
+                  The Insurance number is required.
                 </div>
               </div>
             </div>
@@ -416,7 +409,7 @@ export default {
         insuranceIdImage: null,
         selectedTags: [],
         insuranceName: null,
-        insuranceNumber:''
+        insuranceNumber:""
       },
     };
   },
@@ -435,8 +428,8 @@ export default {
       gender: { required },
       dob: { required },
       street: { required },
-      insuranceName : {required},
-      insuranceNumber : {required}
+      insuranceName : { required },
+      insuranceNumber : { required }
     }
   },
 
@@ -461,6 +454,7 @@ export default {
     },
 
     submit() {
+      console.log("aaa", this.form);
       this.$v.$touch();
       this.form.selectedTags = this.selected;
       if (this.$v.$pendding || this.$v.$error) return;
@@ -498,6 +492,9 @@ export default {
         "country": "",
         "street": "427 Ave Az",
         "optionalMobile": "",
+        "insuranceName": this.insuranceArray[1].value,
+        "insuranceNumber": 12121215,
+
       }
       console.log("form test", this.form);      
     },
