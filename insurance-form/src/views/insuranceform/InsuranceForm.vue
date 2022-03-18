@@ -128,6 +128,7 @@
       </b-card>
       
       <br>
+
         <!-- ------------- -->
           <b-card bg-variant="light" text-variant="black" title="Contact Information">  
             <div class="row">
@@ -163,7 +164,7 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="col-form-label col-form-label-sm">Email <span class="text-danger">*</span><span class="text-danger">*</span></label>
+                <label class="col-form-label col-form-label-sm">Email <span class="text-danger">*</span></label>
                 <input type="email" v-model.trim="$v.form.email.$model" :class="{'is-invalid': validationStatus($v.form.email)}" class="form-control form-control-sm">
                 <div v-if="!$v.form.email.required" class="invalid-feedback">The email field is required.</div>
                 <div v-if="!$v.form.email.email" class="invalid-feedback">The email is not valid.</div>
@@ -180,6 +181,61 @@
         </b-card>
         
         <br>
+
+    <!-- ------------- -->
+      <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
+          <div class="row">
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Insurance Name<span class="text-danger">*</span></label
+                >
+                <b-form-select
+                  v-model.trim="$v.form.insuranceName.$model"
+                  :options="insuranceArray"
+                  value-field="value"
+                  text-field="text"
+                  :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
+                  class="form-control form-control-sm">
+                </b-form-select>
+
+                <!-- <input
+                  type="number"
+                  v-model.trim="$v.form.mobileNumber.$model"
+                  :class="{ 'is-invalid': validationStatus($v.form.mobileNumber)}"
+                  class="form-control form-control-sm"
+                /> -->
+
+                <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
+                  The Insurance name is required.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Insurance Number<span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  v-model.trim="$v.form.insuranceNumber.$model"
+                  :class="{ 'is-invalid': validationStatus($v.form.insuranceNumber)}"
+                  class="form-control form-control-sm"
+                />
+                <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
+                  The Insurance name is required.
+                </div>
+              </div>
+            </div>
+
+       
+        </div>
+      </b-card>
+        <br>
+        <!--  -->
         
         <div>
           <b-card bg-variant="light" text-variant="blue" title="Address Information">
@@ -327,6 +383,14 @@ export default {
           { text: 'VOMITING (R11.11)', value: 'R11.11'},
           { text: 'DIARRHEA (R19.7)', value: 'R19.7'},
         ],
+
+        insuranceArray: [
+          { value: null, text: 'Please select your insurance type' },
+          { value: 'a', text: '8TH DISTRICT ELECTRICAL BENEFIT FUND - ERISA' },
+          { value: 'b', text: '90 Degree Benefits' },
+          { value: 'c', text: 'AARP MCR COMPLETE UHC' },
+          { value: 'd', text: 'ADMINISTRATIVE CONCEPTS, INC' }
+        ],
       
       form: {
         firstName: "",
@@ -350,7 +414,9 @@ export default {
         optionalMobile: "",
         personalImage: null,
         insuranceIdImage: null,
-        selectedTags:[]
+        selectedTags: [],
+        insuranceName: null,
+        insuranceNumber:''
       },
     };
   },
@@ -369,6 +435,8 @@ export default {
       gender: { required },
       dob: { required },
       street: { required },
+      insuranceName : {required},
+      insuranceNumber : {required}
     }
   },
 

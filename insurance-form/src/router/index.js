@@ -11,7 +11,7 @@ const routes = [
     },
     {
         path: "/create-order",
-        name: "insurance",
+        name: "createorder",
         component: () =>
             import ("../views/insuranceform/InsuranceForm.vue"),
         

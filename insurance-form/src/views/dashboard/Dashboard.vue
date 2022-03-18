@@ -91,7 +91,7 @@ export default {
         },
         
         homeButtonClicked () {
-            this.$router.push("/insurance");
+            this.$router.push("/create-order");
         },
 
         refresh() {

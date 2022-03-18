@@ -67,7 +67,7 @@ import AppLogger from "@/utils/AppLogger";
           label:'Collection Date',
           sortable: true
         },
-         {
+        {
           key: 'collectionTime',
           label:'Collection Time',
           sortable: true
