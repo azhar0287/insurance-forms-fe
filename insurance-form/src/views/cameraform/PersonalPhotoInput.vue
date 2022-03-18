@@ -25,7 +25,7 @@ components: {
   },
 methods:{
     submit: function () {
-      this.$router.push("/cardImage");
+      this.$router.push("/insurance-image");
     },
     onPhotoClicked(value) {
       console.log("Phtolicked in parent", value);

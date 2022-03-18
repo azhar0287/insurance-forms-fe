@@ -461,11 +461,11 @@ export default {
       if(this.editFormFlag == true) {
         localStorage.setItem("dataForm", JSON.stringify(this.form));
         localStorage.setItem("editFlag","false")
-        this.$router.push("/formview");
+        this.$router.push("/form-view");
       }
       else {
         localStorage.setItem("dataForm", JSON.stringify(this.form));
-        this.$router.push("/imageInfo");
+        this.$router.push("/personal-image");
         this.$v.$reset();
         this.resetData();
       }

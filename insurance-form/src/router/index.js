@@ -17,22 +17,22 @@ const routes = [
         
     },
     {
-        path: "/imageInfo",
-        name: "imageInfo",
+        path: "/personal-image",
+        name: "personal-image",
         component: () =>
             import ("../views/cameraform/PersonalPhotoInput.vue"),
         
     },
     {
-        path: "/cardImage",
-        name: "cardImage",
+        path: "/insurance-image",
+        name: "insurance-image",
         component: () =>
             import ("../views/cameraform/InsruanceFileUpload.vue"),
         
     },
     {
-        path: "/formview",
-        name: "formview",
+        path: "/form-view",
+        name: "form-view",
         component: () =>
             import ("../views/formview/FormView.vue"),
         
@@ -45,8 +45,8 @@ const routes = [
         
     },
     {
-        path: "/patientCount",
-        name: "patientCount",
+        path: "/patient-count",
+        name: "patient-count",
         component: () =>
             import ("../views/patientcount/PatientCount.vue"),
         

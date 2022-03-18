@@ -28,7 +28,7 @@ data: function () {
       localStorage.setItem("passport", value);
     },
     submit: function () {
-      this.$router.push("/formview");
+      this.$router.push("/form-view");
     },
   },
   
