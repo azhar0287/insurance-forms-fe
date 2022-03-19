@@ -182,54 +182,6 @@
         
         <br>
 
-    <!-- ------------- -->
-      <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
-          <div class="row">
-            
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label class="col-form-label col-form-label-sm"
-                  >Insurance Name<span class="text-danger">*</span></label
-                >
-                <b-form-select
-                  v-model.trim="$v.form.insuranceName.$model"
-                  :options="insuranceArray"
-                  value-field="value"
-                  text-field="text"
-                  :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
-                  class="form-control form-control-sm">
-                </b-form-select>
-
-                <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
-                  The Insurance name is required.
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label class="col-form-label col-form-label-sm"
-                  >Insurance Number<span class="text-danger">*</span></label
-                >
-                <input
-                  type="text"
-                  v-model.trim="$v.form.insuranceNumber.$model"
-                  :class="{ 'is-invalid': validationStatus($v.form.insuranceNumber)}"
-                  class="form-control form-control-sm"
-                />
-                <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
-                  The Insurance number is required.
-                </div>
-              </div>
-            </div>
-
-       
-        </div>
-      </b-card>
-        <br>
-        <!--  -->
-        
         <div>
           <b-card bg-variant="light" text-variant="blue" title="Address Information">
             <div class = "row">
@@ -298,6 +250,56 @@
       </div>
     
     <br>
+
+        <!-- ------------- -->
+      <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
+          <div class="row">
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Insurance Name<span class="text-danger">*</span></label
+                >
+                <b-form-select
+                  v-model.trim="$v.form.insuranceName.$model"
+                  :options="insuranceArray"
+                  value-field="value"
+                  text-field="text"
+                  :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
+                  class="form-control form-control-sm">
+                </b-form-select>
+
+                <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
+                  The Insurance name is required.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="col-form-label col-form-label-sm"
+                  >Insurance Number<span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  v-model.trim="$v.form.insuranceNumber.$model"
+                  :class="{ 'is-invalid': validationStatus($v.form.insuranceNumber)}"
+                  class="form-control form-control-sm"
+                />
+                <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
+                  The Insurance number is required.
+                </div>
+              </div>
+            </div>
+
+       
+        </div>
+      </b-card>
+        <br>
+        <!--  -->
+
+
 
     <b-card bg-variant="light" text-variant="blue" title="HRSA Eligibility Syptoms">
             <div class = "row">
