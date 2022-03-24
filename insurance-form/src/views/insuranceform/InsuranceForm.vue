@@ -253,100 +253,92 @@
 
         <!-- ------------- -->
       <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
-          <div class="row">
-            
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label class="col-form-label col-form-label-sm"
-                  >Insurance Name<span class="text-danger">*</span></label
-                >
-                <b-form-select
-                  v-model.trim="$v.form.insuranceName.$model"
-                  :options="insuranceArray"
-                  value-field="value"
-                  text-field="text"
-                  :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
-                  class="form-control form-control-sm">
-                </b-form-select>
+        <div class="row">  
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm"
+                >Insurance Name<span class="text-danger">*</span></label
+              >
+              <v-select
+                :options="insuranceArray"
+                v-model.trim="$v.form.insuranceName.$model"
+                @input="setSelected"
 
-                <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
-                  The Insurance name is required.
-                </div>
+              >
+              </v-select>
+              <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
+                The Insurance name is required.
               </div>
             </div>
-
-
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label class="col-form-label col-form-label-sm"
-                  >Insurance Number<span class="text-danger">*</span></label
-                >
-                <input
-                  type="text"
-                  v-model.trim="$v.form.insuranceNumber.$model"
-                  :class="{ 'is-invalid': validationStatus($v.form.insuranceNumber)}"
-                  class="form-control form-control-sm"
-                />
-                <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
-                  The Insurance number is required.
-                </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm"
+                >Insurance Number<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                v-model.trim="$v.form.insuranceNumber.$model"
+                class="form-control form-control-sm"
+              />
+              <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
+                The Insurance number is required
               </div>
             </div>
-
-       
-        </div>
-      </b-card>
-        <br>
-        <!--  -->
-
-
-
-    <b-card bg-variant="light" text-variant="blue" title="HRSA Eligibility Syptoms">
-            <div class = "row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <b-form-group
-                    v-slot="{ ariaDescribedby }"
-                  >
-                  <b-form-checkbox-group
-                    v-model="selected"
-                    :options="options"
-                    :aria-describedby="ariaDescribedby"
-                    name="flavour-2a"
-                    stacked
-                  ></b-form-checkbox-group>
-                  </b-form-group>          
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <b-form-group
-                    v-slot="{ ariaDescribedby }"
-                  >
-                  <b-form-checkbox-group
-                    v-model="selected"
-                    :options="options2"
-                    :aria-describedby="ariaDescribedby"
-                    name="flavour-2a"
-                    stacked
-                  ></b-form-checkbox-group>
-                  </b-form-group>                   
-                </div>
-              </div>
-            </div>
-    </b-card>
-
-    </div>
+          </div>
+      </div>
+    </b-card>  
+    
     <br>
+    
+    <!--  -->
+    
+    <b-card bg-variant="light" text-variant="blue" title="HRSA Eligibility Syptoms">
+      <div class = "row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <b-form-group
+              v-slot="{ ariaDescribedby }"
+            >
+            <b-form-checkbox-group
+              v-model="selected"
+              :options="options"
+              :aria-describedby="ariaDescribedby"
+              name="flavour-2a"
+              stacked
+            ></b-form-checkbox-group>
+            </b-form-group>          
+          </div>
+        </div>
+        
+        <div class="col-sm-4">
+          <div class="form-group">
+            <b-form-group
+              v-slot="{ ariaDescribedby }"
+            >
+            <b-form-checkbox-group
+              v-model="selected"
+              :options="options2"
+              :aria-describedby="ariaDescribedby"
+              name="flavour-2a"
+              stacked
+            ></b-form-checkbox-group>
+            </b-form-group>                   
+          </div>
+        </div>
+      </div>
+    </b-card>
+    </div>
+    
+    <br>
+    
     <div>
       <br>
       <div class="col-lg-12 form-group text-center">
         <b-button pill variant="outline-primary" size="lg" @click="submit"> Next Form</b-button>
         <b-button pill variant="outline-primary" size="lg" @click="submitTestData"> Fill Test Data</b-button>
-
       </div>
-    </div>  
-    
+    </div>
     </div>
   </form>
   </div>
@@ -356,6 +348,9 @@ import {
   required,
   email,
 } from "vuelidate/lib/validators";
+import "vue-select/dist/vue-select.css";
+import { Api } from "@/services/Services";
+import AppLogger from "@/utils/AppLogger";
 
 export default {
   name: "InsuranceForm",
@@ -379,13 +374,7 @@ export default {
           { text: 'DIARRHEA (R19.7)', value: 'R19.7'},
         ],
 
-        insuranceArray: [
-          { value: null, text: 'Please select your insurance type' },
-          { value: 'a', text: '8TH DISTRICT ELECTRICAL BENEFIT FUND - ERISA' },
-          { value: 'b', text: '90 Degree Benefits' },
-          { value: 'c', text: 'AARP MCR COMPLETE UHC' },
-          { value: 'd', text: 'ADMINISTRATIVE CONCEPTS, INC' }
-        ],
+        insuranceArray: [],
       
       form: {
         firstName: "",
@@ -436,6 +425,7 @@ export default {
   },
 
   created: function () {
+    this.getInsuranceList();
     if(localStorage.getItem("editFlag")) {
       this.editFormFlag = true;
       this.form = JSON.parse(localStorage.getItem("dataForm")); //copy whole object
@@ -445,27 +435,43 @@ export default {
   },
 
   methods: {
+     getInsuranceList: function() {
+        Api.getInsuranceList()
+        .then((response) => {
+          console.log("Response ", response); 
+          this.insuranceArray = response.data;
+        })
+        .catch((error) => {
+        AppLogger.log(error);
+        });
+    },
+    setSelected: function(value){
+      console.log("AAAA",value);
+      this.form.insuranceName = value;
+      
+    },
     resetData: function () {
-      this.fullname = "";
-      this.email = "";
-      this.country = "";
+      this.form = "";
     },
 
-    validationStatus: function (validation) {
+   validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
+
 
     submit() {
       console.log("aaa", this.form);
       this.$v.$touch();
       this.form.selectedTags = this.selected;
       if (this.$v.$pendding || this.$v.$error) return;
+      
       if(this.editFormFlag == true) {
         localStorage.setItem("dataForm", JSON.stringify(this.form));
         localStorage.setItem("editFlag","false")
         this.$router.push("/form-view");
       }
       else {
+        
         localStorage.setItem("dataForm", JSON.stringify(this.form));
         this.$router.push("/personal-image");
         this.$v.$reset();
@@ -500,10 +506,9 @@ export default {
       }
       console.log("form test", this.form);      
     },
+}
+}
 
-
-  }
-};
 </script>
 <style>
 .btn-vue {

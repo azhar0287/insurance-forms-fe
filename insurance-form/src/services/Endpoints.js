@@ -12,7 +12,9 @@ export default {
     firstox:apiBase + '/PatientOrder/firstox',
     orderStats:apiBase +'/PatientOrder/orders/count',
     orderStatsTable:apiBase + '/PatientOrder/orders/table',
-    testPdf:apiBase + '/PatientOrder/pdf'
+    testPdf:apiBase + '/PatientOrder/pdf',
+    insuranceList:apiBase + '/PatientOrder/insurance/list'
+
   },
   
 }

@@ -16,8 +16,6 @@ export const AuthService = {
     },
   }
 
-
-
 export const Api = {
   async postFormDataFirstox(body) {
     const url = Endpoints.insuanceForm.firstox;  
@@ -45,7 +43,6 @@ export const Api = {
 
   async getOrderStats() {
     const url = Endpoints.insuanceForm.orderStats;
-    
       console.log("Url", url);
       return await axios
         .get(url)
@@ -59,6 +56,20 @@ export const Api = {
 
   async getOrderStatsTable() {
     const url = Endpoints.insuanceForm.orderStatsTable;
+    
+      console.log("Url", url);
+      return await axios
+        .get(url)
+        .then(response => {
+          return response;
+        })
+        .catch(error => {
+          throw error;
+        });
+  },
+
+  async getInsuranceList() {
+    const url = Endpoints.insuanceForm.insuranceList;
     
       console.log("Url", url);
       return await axios
