@@ -247,7 +247,7 @@ export default {
           solid: true
         })
         this.$router.push("/create-order");
-        //this.createFormDataFirstox(this.form);
+        this.createFormDataFirstox(this.form);
         
     },
     

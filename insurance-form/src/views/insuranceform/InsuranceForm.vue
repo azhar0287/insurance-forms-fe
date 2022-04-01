@@ -255,7 +255,7 @@
         <!-- ------------- -->
       <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
         <div class="row">  
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="form-group">
               <label class="col-form-label col-form-label-sm"
                 >Insurance Name<span class="text-danger">*</span></label
@@ -265,8 +265,6 @@
                 v-model="form.insuranceName"
                 @input="setSelected"
                 :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
-
-
               >
               </v-select>
               <div v-if="!$v.form.insuranceName.required" class="invalid-feedback">
@@ -274,6 +272,8 @@
               </div>
             </div>
           </div>
+
+
           <div class="col-sm-3">
             <div class="form-group">
               <label class="col-form-label col-form-label-sm"
