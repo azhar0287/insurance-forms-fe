@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper2">  
+  <div class="wrapper2">
+
     <form @submit.prevent="submit">
       <div class="row form-class">
         <div class="col-sm-3">
@@ -378,8 +379,11 @@ export default {
           { text: 'DIARRHEA (R19.7)', value: 'R19.7'},
         ],
 
-        insuranceArray: [],
-      
+      insuranceArray: [],
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      showDismissibleAlert: false,
+
       form: {
         firstName: "",
         lastName: "",

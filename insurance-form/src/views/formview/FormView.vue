@@ -1,6 +1,7 @@
 <template>
     <div class="">
         <form>
+
             <div class="row form-class">
                 <div class="form-group">
                     <div class="col-md-6">
@@ -237,10 +238,17 @@ export default {
         this.form.personalImage = localStorage.getItem("personalPhoto");
         
         this.createFormDataMarquis(this.form);
-        this.$router.push("/create-order");
-        this.createFormDataFirstox(this.form);
-        
         this.show = false;
+        
+        this.$bvToast.toast(`Data request has submittted `, {
+          title: 'Request Success',
+          variant: 'success',
+          autoHideDelay: 5000,
+          solid: true
+        })
+        this.$router.push("/create-order");
+        //this.createFormDataFirstox(this.form);
+        
     },
     
     createFormDataFirstox(body) {
@@ -270,7 +278,7 @@ export default {
           if (response.data.responseIdentifier == "Success") {
             console.log("Create Form Response marquis", response);
             //alert(response.data.description);
-            localStorage.clear(); //clearing the local storage
+            localStorage.clear(); //clearing the local storage        
             if(response.data.printDocLink != null) {
                 window.open(response.data.printDocLink.marquisPdfLink, "_blank");             
             }
