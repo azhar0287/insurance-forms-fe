@@ -261,8 +261,10 @@
               >
               <v-select
                 :options="insuranceArray"
-                v-model.trim="$v.form.insuranceName.$model"
+                v-model="form.insuranceName"
                 @input="setSelected"
+                :class="{ 'is-invalid': validationStatus($v.form.insuranceName)}"
+
 
               >
               </v-select>
@@ -280,6 +282,8 @@
                 type="text"
                 v-model.trim="$v.form.insuranceNumber.$model"
                 class="form-control form-control-sm"
+                :class="{ 'is-invalid': validationStatus($v.form.insuranceNumber)}"
+
               />
               <div v-if="!$v.form.insuranceNumber.required" class="invalid-feedback">
                 The Insurance number is required
@@ -446,8 +450,9 @@ export default {
         });
     },
     setSelected: function(value){
-      console.log("AAAA",value);
-      this.form.insuranceName = value;
+            console.log("AAAA", value);
+     // this.form.insuranceName = value;
+     
       
     },
     resetData: function () {
@@ -481,6 +486,8 @@ export default {
     },
 
     submitTestData() {
+      this.resetData();
+      console.log("First Data has reset");
       this.form = {  
         "firstName": "Sameer",
         "lastName": "Sethi",
@@ -500,8 +507,8 @@ export default {
         "country": "",
         "street": "427 Ave Az",
         "optionalMobile": "",
-        "insuranceName": this.insuranceArray[1].value,
         "insuranceNumber": 12121215,
+        "insuranceName":this.insuranceArray[5]
 
       }
       console.log("form test", this.form);      

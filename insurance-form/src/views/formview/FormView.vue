@@ -255,7 +255,7 @@ export default {
             } 
             else {
                 console.log("Error");
-                alert("Firstox has not submitted");
+                alert("Firstox form has not submitted");
           }
         }
         })
@@ -276,7 +276,7 @@ export default {
             }
             this.show = false;
           } else {
-            console.log("Error");
+            console.log("Error while saving marquis");
           }
         })
         .catch((error) => {
