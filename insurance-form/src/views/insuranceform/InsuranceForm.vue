@@ -75,7 +75,7 @@
                   </div>
                 </div>
                 
-                <div class="col-sm-3">
+                <!-- <div class="col-sm-3">
                   <div class="form-group">
                     <label class="col-form-label col-form-label-sm"
                       >Gender <span class="text-danger">*</span></label
@@ -87,6 +87,26 @@
                       :class="{ 'is-invalid': validationStatus($v.form.gender)}"
 
                     />
+                    <div v-if="!$v.form.gender.required" class="invalid-feedback">
+                      This field is required.
+                    </div>
+                  </div>
+                </div> -->
+
+
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm"
+                      >Gender <span class="text-danger">*</span></label
+                    >
+                    <b-form-select
+                      v-model="$v.form.gender.$model" :options="genderOptions"
+                      class="form-control form-control-sm"
+                      :class="{ 'is-invalid': validationStatus($v.form.gender)}"
+                     >
+                     
+                    </b-form-select>
+
                     <div v-if="!$v.form.gender.required" class="invalid-feedback">
                       This field is required.
                     </div>
@@ -379,6 +399,11 @@ export default {
           { text: 'DIARRHEA (R19.7)', value: 'R19.7'},
         ],
 
+       genderOptions: [
+          { text: 'Male', value: 'Male' },
+          { text: 'Female', value: 'Female' },
+        ],
+
       insuranceArray: [],
       dismissSecs: 5,
       dismissCountDown: 0,
@@ -398,7 +423,7 @@ export default {
         zipCode: "",
         race: "",
         ethnicity: "",
-        gender: "",
+        gender: null,
         dob: "",
         language: "",
         country: "",
@@ -453,17 +478,16 @@ export default {
         AppLogger.log(error);
         });
     },
-    setSelected: function(value){
-            console.log("AAAA", value);
-     // this.form.insuranceName = value;
-     
-      
+    
+    setSelected: function(value) {
+      console.log("AAAA", value);      
     },
+
     resetData: function () {
       this.form = "";
     },
 
-   validationStatus: function (validation) {
+    validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
 
@@ -505,17 +529,16 @@ export default {
         "zipCode": "75094",
         "race": "other",
         "ethnicity": "other",
-        "gender": "MALE",
         "dob": "1998-01-28",
         "language": "",
         "country": "",
         "street": "427 Ave Az",
         "optionalMobile": "",
+        "gender":"Male",
         "insuranceNumber": 12121215,
-        "insuranceName":this.insuranceArray[5]
-
+        "insuranceName":this.insuranceArray[1]
       }
-      console.log("form test", this.form);      
+      console.log("form test", this.form);
     },
 }
 }
