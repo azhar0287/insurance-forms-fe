@@ -24,21 +24,35 @@
     <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" :width="450" :height="337.5"></canvas>
   </div>
   
-  <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
-    <button type="button" class="button" @click="takePhoto">
+  <div v-if="isCameraOpen && !isLoading">
+    <!-- <button type="button" class="button" @click="takePhoto">
       <img src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png">
-    </button>
-  </div>
+    </button> -->
+
+    <div class="row">
+      <b-button variant="outline-primary" @click="takePhoto">
+        <span v-if="isPhotoTaken">Retake Picture</span>
+        <span v-else>Take Picture</span>
+      </b-button>
   
-  <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
+    <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
     
+    <br>
     <b-button variant="outline-primary" @click="downloadImage">
-      Save Image
+      Save Image and Next
     </b-button>
+
+
+    </div>
+    
     <!-- <a id="downloadPhoto" download="my-photo.jpg" class="button" role="button" @click="downloadImage">
     
     </a> -->
   </div>
+  
+  </div>
+  
+ 
 </div>
 
 </template>
@@ -53,8 +67,14 @@ export default {
       isLoading: false,
     }
   },
+  events: {
+    increaseCountOnChild: function() {
+        this.stopCameraStream();
+      }
+  },
   mounted: function () {
-        console.log("this called");
+      this.$emit('ready');
+      console.log("this called");
       this.isCameraOpen = true;
       this.createCameraElement();
   
@@ -95,6 +115,7 @@ export default {
     },
     
     stopCameraStream() {
+      console.log('message from parent');
       let tracks = this.$refs.camera.srcObject.getTracks();
 
 			tracks.forEach(track => {
