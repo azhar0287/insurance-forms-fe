@@ -1,0 +1,59 @@
+<template>
+  <div class="wrapper">
+    <div class="row bg-white display">
+      <!-- <div class="col-md-3 bg-white"></div>
+      <div class="col-md-8 d-flex bg-white"> -->
+      <div class="col-lg-2 col-md-2"></div>
+      <div class="col-lg-8 col-md-8 rounded px-5 py-4 shadow bg-white text-left" style="width: 100%; height: 450px">
+      <div class="col-lg-2 col-md-2"></div>
+      <Login />
+      </div>
+      </div>
+    <!-- </div> -->
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import Login from "../components/Login.vue";
+
+export default {
+  name: "Index",
+  components: {
+    Login,
+  },
+
+  created: function () {
+    //this.$cookies.set(".EAE07518AUTH","9E077B4E9937B5255EF06C5DA99A63223EF939453493C52730864ED42DD62975F922D9345B388EDBC66973FD7616A5D67209C176CA3F1DC233467D398DEEF4C00D7A988F4367165852AA367EA8A05F3490E11DF148D09EBF17CC6DCBB0CE4004F72EE3689B292ADB5F0159B7664E4FE24035C8A1335BA002B702572371CA0381B95B6EFDCFD238577FD43267890C17FF2E7CBA6FDF879A3B7C86FDD6B4235F96DE3E7D26DE19AA18CE0987230FDF8DF63F867BEEFAC5323AAED2590645C8F99D3863B16A2652BA2204BCC4C17D7D07C6E7730883BEBDFF4A134AFAD781065E19128BB3A006E1694525F7BA72B6852761AF996B837E9257FD8814111B8D03289EF038499FBBFACD28A7B47D63CF6B57BC23A3C0727D1B07EE20EB0995BFC942307AD02A46AFDBE755A1896F4454A74BE501989A4DD917E023B5AFF8B94C31B1F59AFE6E4E6792D54FADBF06F730BFA75C701A61CB",null, null, "firstox.stratusdx.net"); // domain address
+    //this.$cookies.set(".EAE07518AUTH", "9E077B4E9937B5255EF06C5DA99A63223EF939453493C52730864ED42DD62975F922D9345B388EDBC66973FD7616A5D67209C176CA3F1DC233467D398DEEF4C00D7A988F4367165852AA367EA8A05F3490E11DF148D09EBF17CC6DCBB0CE4004F72EE3689B292ADB5F0159B7664E4FE24035C8A1335BA002B702572371CA0381B95B6EFDCFD238577FD43267890C17FF2E7CBA6FDF879A3B7C86FDD6B4235F96DE3E7D26DE19AA18CE0987230FDF8DF63F867BEEFAC5323AAED2590645C8F99D3863B16A2652BA2204BCC4C17D7D07C6E7730883BEBDFF4A134AFAD781065E19128BB3A006E1694525F7BA72B6852761AF996B837E9257FD8814111B8D03289EF038499FBBFACD28A7B47D63CF6B57BC23A3C0727D1B07EE20EB0995BFC942307AD02A46AFDBE755A1896F4454A74BE501989A4DD917E023B5AFF8B94C31B1F59AFE6E4E6792D54FADBF06F730BFA75C701A61CB", {expires: 1, domain: 'firstox.stratusdx.net'})
+    //this.$cookies.set("use_path_argument","value",null, null, "firstox.stratusdx.net");   // default 1 day after,expire
+
+    //window.open("https://firstox.stratusdx.net/xreport/requisition.ashx?id=94177&type=1&lblcnt=0&uid=vmfpvk8jjdw8v3nur6myfzc32uxgjnb8vc7lm8pn68du6l7rqz5a", "_blank");    
+  },
+};
+</script>s
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.vue-bg {
+  background: #bce5d0;
+}
+
+.wrapper {
+  /* margin-top: 100px; */
+  width: 100%;
+  height: 800px;
+  display:flex;
+  justify-content: center;
+}
+
+.display{
+    align-items: center;
+}
+</style>
