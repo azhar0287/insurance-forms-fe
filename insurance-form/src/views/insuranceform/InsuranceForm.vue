@@ -117,7 +117,7 @@
                   <div class="form-group">
                     <label class="col-form-label col-form-label-sm">PASSPORT/DL</label>
                     <input
-                      type="number"
+                      type="text"
                       v-model.trim="form.passport"
                       class="form-control form-control-sm"
                     />
