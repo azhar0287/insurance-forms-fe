@@ -82,6 +82,20 @@ export const Api = {
         });
   },
 
+  async getMarquisInsuranceList() {
+    const url = Endpoints.insuanceForm.marquisInsuranceList;
+    
+      console.log("Url", url);
+      return await axios
+        .get(url)
+        .then(response => {
+          return response;
+        })
+        .catch(error => {
+          throw error;
+        });
+  },
+
   async getPdfContent() {
     const url = Endpoints.insuanceForm.testPdf;
       console.log("Url", url);

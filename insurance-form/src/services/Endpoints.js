@@ -13,7 +13,9 @@ export default {
     orderStats:apiBase +'/PatientOrder/orders/count',
     orderStatsTable:apiBase + '/PatientOrder/orders/table',
     testPdf:apiBase + '/PatientOrder/pdf',
-    insuranceList:apiBase + '/PatientOrder/insurance/list'
+    insuranceList:apiBase + '/PatientOrder/insurance/list/firtox',
+    marquisInsuranceList:apiBase + '/PatientOrder/insurance/list/marquis'
+
 
   },
   
