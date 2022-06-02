@@ -272,13 +272,14 @@
     
     <br>
 
-        <!-- ------------- -->
+      <!-- ------------- -->
       <b-card bg-variant="light" text-variant="black" title="Insurance Information">  
         <div class="row">  
+          
           <div class="col-sm-4">
             <div class="form-group">
               <label class="col-form-label col-form-label-sm"
-                >Insurance Name<span class="text-danger">*</span></label
+                >Firstox Insurance<span class="text-danger">*</span></label
               >
               <v-select
                 :options="insuranceArray"
@@ -293,11 +294,10 @@
             </div>
           </div>
 
-
           <div class="col-sm-3">
             <div class="form-group">
               <label class="col-form-label col-form-label-sm"
-                >Insurance Number<span class="text-danger">*</span></label
+                >Firstox Insurance Number<span class="text-danger">*</span></label
               >
               <input
                 type="text"
@@ -311,6 +311,45 @@
               </div>
             </div>
           </div>
+<!-- ------------------------------------ -->
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm"
+                >Marquis Insurance<span class="text-danger">*</span></label
+              >
+              <v-select
+                :options="insuranceArrayMarquis"
+                label="name"
+                v-model="form.insuranceNameMarquis"
+                @input="setSelectedMarquis"
+                :class="{ 'is-invalid': validationStatus($v.form.insuranceNameMarquis)}"
+              >
+              </v-select>
+              <div v-if="!$v.form.insuranceNameMarquis.required" class="invalid-feedback">
+                The Marquis Insurance name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="col-form-label col-form-label-sm"
+                >Marquis Plan Number<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                v-model.trim="$v.form.insuranceNumberMarquis.$model"
+                class="form-control form-control-sm"
+                :class="{ 'is-invalid': validationStatus($v.form.insuranceNumberMarquis)}"
+                :disabled=true
+              />
+              <div v-if="!$v.form.insuranceNumberMarquis.required" class="invalid-feedback">
+                The Insurance number is required
+              </div>
+            </div>
+          </div>
+
+
       </div>
     </b-card>  
     
@@ -405,6 +444,8 @@ export default {
         ],
 
       insuranceArray: [],
+      insuranceArrayMarquis: [],
+
       dismissSecs: 5,
       dismissCountDown: 0,
       showDismissibleAlert: false,
@@ -433,7 +474,9 @@ export default {
         insuranceIdImage: null,
         selectedTags: [],
         insuranceName: null,
-        insuranceNumber:""
+        insuranceNumber:"",
+        insuranceNameMarquis:"",
+        insuranceNumberMarquis:""
       },
     };
   },
@@ -453,12 +496,15 @@ export default {
       dob: { required },
       street: { required },
       insuranceName : { required },
-      insuranceNumber : { required }
+      insuranceNumber : { required },
+      insuranceNameMarquis:{required},
+      insuranceNumberMarquis:{required}
     }
   },
 
   created: function () {
     this.getInsuranceList();
+    this.getInsuranceListMarquis();
     if(localStorage.getItem("editFlag")) {
       this.editFormFlag = true;
       this.form = JSON.parse(localStorage.getItem("dataForm")); //copy whole object
@@ -468,21 +514,36 @@ export default {
   },
 
   methods: {
-     getInsuranceList: function() {
-        Api.getInsuranceList()
-        .then((response) => {
-          console.log("Response ", response); 
-          this.insuranceArray = response.data;
-        })
-        .catch((error) => {
-        AppLogger.log(error);
-        });
+    getInsuranceList: function() {
+      Api.getInsuranceList()
+      .then((response) => {
+        console.log("Response ", response); 
+        this.insuranceArray = response.data;
+      })
+      .catch((error) => {
+      AppLogger.log(error);
+      });
+    },
+
+    getInsuranceListMarquis: function() {
+      Api.getMarquisInsuranceList()
+      .then((response) => {
+        console.log("Response marquis list ", response); 
+        this.insuranceArrayMarquis = response.data;
+      })
+      .catch((error) => {
+      AppLogger.log(error);
+      });
     },
     
     setSelected: function(value) {
       console.log("AAAA", value);      
     },
 
+    setSelectedMarquis: function(value) {
+      console.log("BBB", value);
+      this.form.insuranceNumberMarquis = value.code;
+    },
     resetData: function () {
       this.form = "";
     },
@@ -536,7 +597,9 @@ export default {
         "optionalMobile": "",
         "gender":"Male",
         "insuranceNumber": 12121215,
-        "insuranceName":this.insuranceArray[1]
+        "insuranceName":this.insuranceArray[1],
+        "insuranceNameMarquis":this.insuranceArrayMarquis[2].name,
+        "insuranceNumberMarquis": "3859"
       }
       console.log("form test", this.form);
     },
