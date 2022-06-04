@@ -95,22 +95,22 @@
 
 
                   <div class="col-sm-3">
-                  <div class="form-group">
-                    <label class="col-form-label col-form-label-sm"
-                      >Gender <span class="text-danger">*</span></label
-                    >
-                    <b-form-select
-                      v-model="$v.form.gender.$model" :options="genderOptions"
-                      class="form-control form-control-sm"
-                      :class="{ 'is-invalid': validationStatus($v.form.gender)}"
-                     >
-                     
-                    </b-form-select>
+                    <div class="form-group">
+                      <label class="col-form-label col-form-label-sm"
+                        >Gender <span class="text-danger">*</span></label
+                      >
+                      <b-form-select
+                        v-model="$v.form.gender.$model" :options="genderOptions"
+                        class="form-control form-control-sm"
+                        :class="{ 'is-invalid': validationStatus($v.form.gender)}"
+                      >
+                      
+                      </b-form-select>
 
-                    <div v-if="!$v.form.gender.required" class="invalid-feedback">
-                      This field is required.
+                      <div v-if="!$v.form.gender.required" class="invalid-feedback">
+                        This field is required.
+                      </div>
                     </div>
-                  </div>
                 </div>
 
                 <div class="col-sm-3">
@@ -464,7 +464,7 @@ export default {
         zipCode: "",
         race: "",
         ethnicity: "",
-        gender: null,
+        gender: [],
         dob: "",
         language: "",
         country: "",
