@@ -541,8 +541,13 @@ export default {
     },
 
     setSelectedMarquis: function(value) {
-      console.log("BBB", value);
-      this.form.insuranceNumberMarquis = value.code;
+      if (value != null) {
+        this.form.insuranceNumberMarquis = value.code;
+      }
+      else {
+          this.form.insuranceNumberMarquis = '';
+      }
+      
     },
     resetData: function () {
       this.form = "";
