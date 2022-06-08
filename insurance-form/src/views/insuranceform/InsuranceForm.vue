@@ -543,11 +543,12 @@ export default {
     setSelectedMarquis: function(value) {
       if (value != null) {
         this.form.insuranceNumberMarquis = value.code;
+        this.form.insuranceNameMarquis = value.name;
       }
       else {
-          this.form.insuranceNumberMarquis = '';
-      }
-      
+        this.form.insuranceNumberMarquis = '';
+        this.form.insuranceNameMarquis = '';
+        }
     },
     resetData: function () {
       this.form = "";
